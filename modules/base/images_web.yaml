@@ -13,8 +13,7 @@ image:
     type: RGB565
     transparency: alpha_channel
 
-  # - file: assets/produced_icon.svg
-  - file: https://raw.githubusercontent.com/agillis/esphome-modular-lvgl-buttons/tree/main/modules/assets/produced_icon.svg
+  - file: https://raw.githubusercontent.com/agillis/esphome-modular-lvgl-buttons/main/modules/assets/produced_icon.svg
     id: produced_icon_80px
     resize: 80x80
     type: RGB565
