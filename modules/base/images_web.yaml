@@ -19,7 +19,7 @@ image:
     type: RGB565
     transparency: alpha_channel
 
-  - file: assets/grid_ok.svg
+  - file: https://raw.githubusercontent.com/agillis/esphome-modular-lvgl-buttons/main/modules/assets/grid_ok.svg
     id: grid_ok_30px
     resize: 30x30
     type: RGB565
