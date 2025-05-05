@@ -7,7 +7,7 @@
 # Hardware configuration file
 
 esphome:
-  min_version: 2025.4.0
+  min_version: 2025.4.1
   platformio_options:
     build_flags: "-DBOARD_HAS_PSRAM"
     board_build.arduino.memory_type: qio_opi
@@ -35,6 +35,8 @@ esp32:
       CONFIG_SPIRAM_RODATA: y
       CONFIG_ESP32S3_DATA_CACHE_LINE_64B: y
       CONFIG_COMPILER_OPTIMIZATION_PERF: y
+    advanced:
+      enable_idf_experimental_features: True    
 
 psram:
   mode: octal
@@ -115,7 +117,6 @@ touchscreen:
 #-------------------------------------------
 # Display
 #-------------------------------------------
-
 display:
   - platform: rpi_dpi_rgb
     id: my_display
@@ -139,9 +140,6 @@ display:
     reset_pin:
       ch422g: ch422g_hub
       number: 3
-#    enable_pin:
-#      ch422g: ch422g_hub
-#      number: 2
     hsync_back_porch: 8
     hsync_front_porch: 8
     hsync_pulse_width: 4
