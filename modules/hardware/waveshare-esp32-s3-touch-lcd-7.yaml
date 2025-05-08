@@ -88,16 +88,18 @@ output:
 #-------------------------------------------
 # Touchscreen gt911
 #-------------------------------------------
+
 i2c:
-  sda: GPIO08
-  scl: GPIO09
-  scan: True
-  id: bus_a
+  - id: bus_a
+    sda: 8
+    scl: 9
+    scan: true 
 
 touchscreen:
   platform: gt911
   id: my_touchscreen
   display: my_display
+  i2c_id: bus_a
   interrupt_pin: GPIO4
   reset_pin:
     ch422g: ch422g_hub

@@ -47,28 +47,24 @@ light:
 # Touchscreen
 # -------------------------------------------
 i2c:
-  sda: 19
-  scl: 20
+  - id: bus_a
+    sda: 19
+    scl: 20
+    scan: true 
 
 touchscreen:
-  platform: gt911
-  transform:
-    mirror_x: false
-    mirror_y: false
-  update_interval: 50ms
-  address: 0x5D
-  on_touch:
-    - logger.log:
-        format: Touch at (%d, %d)
-        args: [touch.x, touch.y]
-    - lambda: |-
-          ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
-              touch.x,
-              touch.y,
-              touch.x_raw,
-              touch.y_raw
-              );
+  - platform: gt911
+    id: my_touchscreen
+    i2c_id: bus_a  
+    transform:
+      mirror_x: false
+      mirror_y: false
+    update_interval: 50ms
+    address: 0x5D
 
+#-------------------------------------------
+# Display
+#-------------------------------------------
 display:
   - platform: rpi_dpi_rgb
     id: my_display

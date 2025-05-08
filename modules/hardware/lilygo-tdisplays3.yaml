@@ -49,8 +49,9 @@ i80:
     - 48
 
 i2c:
-  sda: 17
-  scl: 18
+  - id: bus_a
+    sda: 17
+    scl: 18
 
 # 320x170 LCD screen
 display:

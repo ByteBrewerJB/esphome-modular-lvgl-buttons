@@ -93,14 +93,15 @@ light:
 # Touchscreen gt911 i2c
 #-------------------------------------------
 i2c:
-  sda:
-    number: 8
-  scl:
-    number: 4
+  - id: bus_a
+    sda: 8
+    scl: 4
+    scan: true    
 
 touchscreen:
   - platform: gt911
     id: my_touchscreen
+    i2c_id: bus_a
     interrupt_pin:
       number: 3
       ignore_strapping_warning: true

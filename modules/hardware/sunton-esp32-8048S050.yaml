@@ -9,7 +9,6 @@ esphome:
     board_build.esp-idf.memory_type: qio_opi
     board_build.flash_mode: dio
     board_upload.maximum_ram_size: 524288
-    
 
 esp32:
   board: esp32-s3-devkitc-1
@@ -33,11 +32,6 @@ psram:
   mode: octal
   speed: 80MHz
 
-i2c:
-  - sda: 19
-    scl: 20
-    scan: true
-
 #-------------------------------------------
 # Backlight
 #-------------------------------------------
@@ -54,9 +48,19 @@ light:
     id: display_backlight
     restore_mode: ALWAYS_ON
 
+#-------------------------------------------
+# Touchscreen gt911 i2c
+#-------------------------------------------
+i2c:
+  - id: bus_a
+    sda: 19
+    scl: 20
+    scan: true    
+
 touchscreen:
-  - id: my_touchscreen
-    platform: gt911
+  - platform: gt911
+    id: my_touchscreen
+    i2c_id: bus_a
     address: 0x5D
     update_interval: 16ms
     transform:
@@ -72,9 +76,12 @@ touchscreen:
     #           touch.y_raw
     #         );
 
+#-------------------------------------------
+# Display
+#-------------------------------------------
 display:
-  - id: my_display
-    platform: rpi_dpi_rgb
+  - platform: rpi_dpi_rgb
+    id: my_display
     dimensions:
       width: 800
       height: 480

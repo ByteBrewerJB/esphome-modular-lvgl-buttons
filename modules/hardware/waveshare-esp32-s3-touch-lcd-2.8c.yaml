@@ -56,15 +56,15 @@ light:
 # Touchscreen GT911 i2c
 #-------------------------------------------
 i2c:
-  - id: i2c_bus
-    sda: GPIO15
-    scl: GPIO07
+  - id: bus_a
+    sda: 15
+    scl: 7
 
 # GT911 Touchscreen Controller
 touchscreen:
   - platform: gt911
     id: my_touchscreen
-    i2c_id: i2c_bus
+    i2c_id: bus_a
     reset_pin:
       pca9554: p_c_a
       number: 1
