@@ -57,8 +57,9 @@ host:
 script:
   - id: time_update
     then:
-      - lambda: |-
-          // No operation
+      - lvgl.label.update:
+          id: time_label
+          text: !lambda 'return id(system_time).now().strftime("%l:%M %P");' # The format %I:%M %p will display the time in a 12-hour format with "am" or "pm" included
 
 packages:
   # Generic configuration for ESP32 screens
@@ -77,7 +78,9 @@ packages:
   # Some basic sensors
   sensors: !include modules/sensors/sensors_base-SDL.yaml
   # Styles + Themes
-  theme_style: !include modules/base/theme_style.yaml  
+  theme_style: !include modules/base/theme_style.yaml 
+  # Get correct time from homeassistant
+  time: !include modules/base/time_homeassistant.yaml
 
   # Harware description file
   hardware: !include modules/hardware/SDL-lvgl.yaml
@@ -166,6 +169,12 @@ lvgl:
               text: RGB red
               icon: $string_lights
               page: RGB1
+        - button: !include
+            file: modules/buttons/time_button.yaml
+            vars:
+              uid: button_6
+              height: $button_height_single
+              page: RGB1              
               
         - button:
             height: $button_height_single
