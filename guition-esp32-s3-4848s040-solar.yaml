@@ -59,15 +59,26 @@ script:
 
 packages:
   # Generic configuration for ESP32 screens
+  # If you need Wi-Fi include this
   wifi: !include modules/base/wifi.yaml
+  # Basic ESP 32 stuff
   base: !include modules/base/base.yaml
+  # If you have a touch screen include this
+  touchscreen: !include modules/base/touchscreen.yaml
+  # If your touch screen has a backlight include this
+  backlight: !include modules/base/backlignt.yaml
+  # All the colors
   colors: !include modules/base/color.yaml
+  # Fonts you need
   fonts: !include modules/base/fonts.yaml
+  # Your Images
   images: !include modules/base/images.yaml
-  time: !include modules/base/time_sntp.yaml
+  # Some basic sensors
   sensors: !include modules/sensors/sensors_base.yaml
+  # Styles + Themes
+  theme_style: !include modules/base/theme_style.yaml
 
-  # Harware description file
+  # Harware description file - for your board
   hardware: !include modules/hardware/guition-esp32-s3-4848s040.yaml
   
   # Extra code for pages
@@ -176,7 +187,7 @@ lvgl:
               type: grid
               grid_rows: [ fr(1), fr(1) ]
               grid_columns: [ content, content, content, content, content, content, content ]
-              pad_column: 4
+              pad_column: 1
               pad_row: 5
             widgets:
 # Imported            
@@ -188,7 +199,7 @@ lvgl:
               - obj:
                   grid_cell_row_pos: 0
                   grid_cell_column_pos: 1
-                  width: 110
+                  width: 120
                   height: 50
                   layout:
                     type: FLEX
@@ -218,8 +229,7 @@ lvgl:
                   grid_cell_row_pos: 0
                   grid_cell_column_pos: 2
                   pad_top: 20
-                  pad_left: 6
-                  pad_right: 6
+                  pad_left: 2
                   src: arrow_right_gray
               - obj:
                   grid_cell_row_pos: 0
@@ -260,8 +270,7 @@ lvgl:
                     grid_cell_row_pos: 0
                     grid_cell_column_pos: 4
                     pad_top: 20
-                    pad_left: 6
-                    pad_right: 6
+                    pad_right: 2
                     src: arrow_right_gray
               - image:
                     grid_cell_row_pos: 0
@@ -271,7 +280,7 @@ lvgl:
               - obj:
                     grid_cell_row_pos: 0
                     grid_cell_column_pos: 6
-                    width: 110
+                    width: 120
                     height: 50
                     layout:
                         type: FLEX
@@ -307,7 +316,7 @@ lvgl:
               - obj:
                   grid_cell_row_pos: 1
                   grid_cell_column_pos: 1
-                  width: 110
+                  width: 120
                   height: 50
                   layout:
                     type: FLEX
@@ -344,12 +353,13 @@ lvgl:
                     grid_cell_row_pos: 1
                     grid_cell_column_pos: 5
                     pad_top: 10
+                    pad_right: 2
                     src: up_arrow  
 
               - obj:
                     grid_cell_row_pos: 1
                     grid_cell_column_pos: 6
-                    width: 110
+                    width: 120
                     height: 50
                     layout:
                         type: FLEX
@@ -373,7 +383,7 @@ lvgl:
                       - label:
                           text_font: ep14
                           text_color: black
-                          text: Net Imported        
+                          text: Net Imported       
       on_click:
         then:
           lvgl.page.show: main_page

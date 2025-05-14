@@ -61,11 +61,6 @@ sensor:
         coeffecient: -1.0
     on_value:
       then:
-        - lvgl.label.update:
-            id: daily_net_watts
-            text:
-              format: "%.1f"
-              args: [ 'id(daily_net_sum).state' ]
         - if:
             condition:
               lambda: return (id(daily_net_sum).state < 0);
@@ -83,6 +78,11 @@ sensor:
               - lvgl.image.update:
                   id: daily_net_watts_icon
                   src: down_arrow
+        - lvgl.label.update:
+            id: daily_net_watts
+            text:
+              format: "%.1f"
+              args: [ 'fabs(id(daily_net_sum).state)' ]                  
                   
 #-------------------------------------------
 # Graphics and Fonts
@@ -93,12 +93,24 @@ image:
     resize: 30x30
     type: RGB565
     transparency: alpha_channel
+  
+  - file: modules/assets/battery_100.svg
+    id: battery_100
+    resize: 45x45
+    type: RGB565
+    transparency: alpha_channel
 
   - file: modules/assets/grid_icon.svg
     id: grid_icon
     resize: 30x30
     type: RGB565
     transparency: alpha_channel
+    
+  - file: modules/assets/grid_ok.svg
+    id: grid_ok
+    resize: 45x45
+    type: RGB565
+    transparency: alpha_channel    
 
   - file: modules/assets/produced_icon.svg
     id: produced_icon
@@ -132,11 +144,16 @@ image:
 
 font:
   - file: "modules/assets/epVisuelt-Regular.ttf"
-    id: ep28
-    size: 28
+    id: ep32
+    size: 32
     bpp: 8
 
   - file: "modules/assets/epVisuelt-Regular.ttf"
-    id: ep14
-    size: 14
+    id: ep24
+    size: 24
+    bpp: 8 
+
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep16
+    size: 16
     bpp: 8                  
