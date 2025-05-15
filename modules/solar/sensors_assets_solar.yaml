@@ -2,87 +2,111 @@
 ---
 sensor:
   - platform: homeassistant
-    id: daily_net_import
+    id: current_power_consumption
+    entity_id: sensor.envoy_${envoy_id}_current_power_consumption
+    internal: true
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: current_power_consumption_watts
+            text:
+              format: "%.1f"
+              args: [ 'id(current_power_consumption).state' ]
+              
+  - platform: homeassistant
+    id: current_power_production
+    entity_id: sensor.envoy_${envoy_id}_current_power_production
+    internal: true
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: current_power_production_watts
+            text:
+              format: "%.1f"
+              args: [ 'id(current_power_production).state' ]   
+
+  - platform: homeassistant
+    id: daily_energy_net_import
     entity_id: sensor.daily_net_import
     internal: true
     on_value:
       then:
         - lvgl.label.update:
-            id: daily_imported_watts
+            id: daily_energy_imported_watts
             text:
               format: "%.1f"
-              args: [ 'id(daily_net_import).state' ]
+              args: [ 'id(daily_energy_net_import).state' ]
 
   - platform: homeassistant
-    id: daily_net_export
+    id: daily_energy_net_export
     entity_id: sensor.daily_net_export
     internal: true
     on_value:
       then:
         - lvgl.label.update:
-            id: daily_exported_watts
+            id: daily_energy_exported_watts
             text:
               format: "%.1f"
-              args: [ 'id(daily_net_export).state' ]
+              args: [ 'id(daily_energy_net_export).state' ]
 
   - platform: homeassistant
-    id: daily_solar_energy_production
-    entity_id: sensor.daily_solar_energy_production
+    id: daily_energy_production
+    entity_id: sensor.daily_energy_production
     internal: true
     on_value:
       then:
         - lvgl.label.update:
-            id: daily_solar_production_watts
+            id: daily_energy_production_watts
             text:
               format: "%.1f"
-              args: [ 'id(daily_solar_energy_production).state' ]
+              args: [ 'id(daily_energy_production).state' ]
 
   - platform: homeassistant
-    id: daily_consumption
-    entity_id: sensor.envoy_122030047695_energy_consumption_today
+    id: daily_energy_consumption
+    entity_id: sensor.daily_energy_consumption
     internal: true
     on_value:
       then:
         - lvgl.label.update:
-            id: daily_consumption_watts
+            id: daily_energy_consumption_watts
             text:
               format: "%.1f"
-              args: [ 'id(daily_consumption).state' ]
+              args: [ 'id(daily_energy_consumption).state' ]
 
   - platform: combination
-    id: daily_net_sum
+    id: daily_energy_net_sum
     type: linear
-    name: "Daily net sum"
+    name: "Daily energy net sum"
     internal: true
     sources:
-      - source: daily_net_import
+      - source: daily_energy_net_import
         coeffecient: 1.0
-      - source: daily_net_export
+      - source: daily_energy_net_export
         coeffecient: -1.0
     on_value:
       then:
         - if:
             condition:
-              lambda: return (id(daily_net_sum).state < 0);
+              lambda: return (id(daily_energy_net_sum).state < 0);
             then:
               - lvgl.widget.update:
-                  id: daily_net_watts
+                  id: daily_energy_net_watts
                   text_color: ep_blue
               - lvgl.image.update:
-                  id: daily_net_watts_icon
+                  id: daily_energy_net_watts_icon
                   src: up_arrow
             else:
               - lvgl.widget.update:
-                  id: daily_net_watts
+                  id: daily_energy_net_watts
                   text_color: ep_orange
               - lvgl.image.update:
-                  id: daily_net_watts_icon
+                  id: daily_energy_net_watts_icon
                   src: down_arrow
         - lvgl.label.update:
-            id: daily_net_watts
+            id: daily_energy_net_watts
             text:
               format: "%.1f"
-              args: [ 'fabs(id(daily_net_sum).state)' ]                  
+              args: [ 'fabs(id(daily_energy_net_sum).state)' ] # Always display a positive number               
                   
 #-------------------------------------------
 # Graphics and Fonts
@@ -93,24 +117,12 @@ image:
     resize: 30x30
     type: RGB565
     transparency: alpha_channel
-  
-  - file: modules/assets/battery_100.svg
-    id: battery_100
-    resize: 45x45
-    type: RGB565
-    transparency: alpha_channel
 
   - file: modules/assets/grid_icon.svg
     id: grid_icon
     resize: 30x30
     type: RGB565
     transparency: alpha_channel
-    
-  - file: modules/assets/grid_ok.svg
-    id: grid_ok
-    resize: 45x45
-    type: RGB565
-    transparency: alpha_channel    
 
   - file: modules/assets/produced_icon.svg
     id: produced_icon

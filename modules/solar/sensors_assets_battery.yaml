@@ -1,0 +1,39 @@
+#You need at add energy_info.yaml to your configuration.yaml
+---
+sensor:
+  - platform: homeassistant
+    id: current_battery_soc
+    entity_id: sensor.envoy_${envoy_id}_battery
+    internal: true
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: battery_soc
+            text:
+              format: "%.0f%%"
+              args: [ 'id(current_battery_soc).state' ]
+              
+                 
+                  
+#-------------------------------------------
+# Graphics and Fonts
+#-------------------------------------------
+image:
+  - file: modules/assets/battery_100.svg
+    id: battery_100
+    resize: 45x45
+    type: RGB565
+    transparency: alpha_channel
+    
+  - file: modules/assets/grid_ok.svg
+    id: grid_ok
+    resize: 45x45
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/grid_down.svg
+    id: grid_down
+    resize: 45x45
+    type: RGB565
+    transparency: alpha_channel       
+                
