@@ -42,6 +42,7 @@ i2s_audio:
       number: 18
     i2s_bclk_pin:
       number: 0
+      ignore_strapping_warning: true
 
 speaker:
   - platform: i2s_audio

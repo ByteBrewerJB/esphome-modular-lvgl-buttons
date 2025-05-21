@@ -7,23 +7,55 @@ sensor:
     internal: true
     on_value:
       then:
-        - lvgl.label.update:
-            id: current_power_consumption_watts
-            text:
-              format: "%.1f"
-              args: [ 'id(current_power_consumption).state' ]
-              
+        - if:
+            condition:
+              lambda: 'return id(current_power_consumption).state < 9.999;'
+            then:              
+              - lvgl.label.update:
+                  id: current_power_consumption_watts
+                  text:
+                    format: "%.0f"
+                    args: [ '(id(current_power_consumption).state * 1000)' ]
+              - lvgl.label.update:
+                  id: current_power_consumption_units
+                  text: W
+            else:
+              - lvgl.label.update:
+                  id: current_power_consumption_watts
+                  text:
+                    format: "%.1f"
+                    args: [ 'id(current_power_consumption).state' ]
+              - lvgl.label.update:
+                  id: current_power_consumption_units
+                  text: kW                    
+
   - platform: homeassistant
     id: current_power_production
     entity_id: sensor.envoy_${envoy_id}_current_power_production
     internal: true
     on_value:
       then:
-        - lvgl.label.update:
-            id: current_power_production_watts
-            text:
-              format: "%.1f"
-              args: [ 'id(current_power_production).state' ]   
+        - if:
+            condition:
+              lambda: 'return id(current_power_production).state < 9.999;'
+            then:              
+              - lvgl.label.update:
+                  id: current_power_production_watts
+                  text:
+                    format: "%.0f"
+                    args: [ '(id(current_power_production).state * 1000)' ]
+              - lvgl.label.update:
+                  id: current_power_production_units
+                  text: W
+            else:
+              - lvgl.label.update:
+                  id: current_power_production_watts
+                  text:
+                    format: "%.1f"
+                    args: [ 'id(current_power_production).state' ]
+              - lvgl.label.update:
+                  id: current_power_production_units
+                  text: kW   
 
   - platform: homeassistant
     id: daily_energy_net_import
@@ -112,11 +144,23 @@ sensor:
 # Graphics and Fonts
 #-------------------------------------------
 image:
+  - file: modules/assets/clock.svg
+    id: clock_icon_60
+    resize: 60x60
+    type: RGB565
+    transparency: alpha_channel
+    
   - file: modules/assets/house.svg
     id: house_icon
     resize: 30x30
     type: RGB565
     transparency: alpha_channel
+    
+  - file: modules/assets/house.svg
+    id: house_icon_60
+    resize: 60x60
+    type: RGB565
+    transparency: alpha_channel    
 
   - file: modules/assets/grid_icon.svg
     id: grid_icon
@@ -129,6 +173,12 @@ image:
     resize: 30x30
     type: RGB565
     transparency: alpha_channel
+    
+  - file: modules/assets/produced_icon.svg
+    id: produced_icon_60
+    resize: 60x60
+    type: RGB565
+    transparency: alpha_channel    
 
   - file: modules/assets/down_arrow.svg
     id: down_arrow
@@ -155,6 +205,11 @@ image:
     transparency: alpha_channel
 
 font:
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep90
+    size: 90
+    bpp: 8
+    
   - file: "modules/assets/epVisuelt-Regular.ttf"
     id: ep32
     size: 32
