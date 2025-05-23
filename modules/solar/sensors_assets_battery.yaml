@@ -13,13 +13,36 @@ sensor:
             text:
               format: "%.0f%%"
               args: [ 'id(current_battery_soc).state' ]
-          
+ 
+  - platform: homeassistant
+    id: daily_battery_energy_charged
+    entity_id: sensor.daily_battery_energy_charged
+    internal: true
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: daily_battery_energy_charged_watts
+            text:
+              format: "%.1f"
+              args: [ 'id(daily_battery_energy_charged).state' ]
+
+  - platform: homeassistant
+    id: daily_battery_energy_discharged
+    entity_id: sensor.daily_battery_energy_discharged
+    internal: true
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: daily_battery_energy_discharged_watts
+            text:
+              format: "%.1f"
+              args: [ 'id(daily_battery_energy_discharged).state' ]    
+
 binary_sensor:
   - platform: homeassistant
     id: current_grid_status
-    name: "Grid status"
-    entity_category: diagnostic
-    entity_id: binary_sensor.enpower_${envoy_id}_grid_status
+    entity_id: binary_sensor.enpower_${enpower_id}_grid_status
+    internal: true
     publish_initial_state: true
     on_state:
       then:
@@ -29,20 +52,17 @@ binary_sensor:
             then:
               - lvgl.label.update:
                   id: grid_status_label
-                  text: "Grid Up"
+                  text: "Grid up"
               - lvgl.image.update:
                   id: grid_status_icon
                   src: grid_ok                  
             else:
               - lvgl.label.update:
                   id: grid_status_label
-                  text: "Grid Down"
+                  text: "Grid down"
               - lvgl.image.update:
                   id: grid_status_icon
-                  src: grid_down                  
-    
-
-
+                  src: grid_down  
 
 #-------------------------------------------
 # Graphics and Fonts
@@ -50,7 +70,7 @@ binary_sensor:
 image:
   - file: modules/assets/battery.svg
     id: battery
-    resize: 45x45
+    resize: 30x30
     type: RGB565
     
     transparency: alpha_channel
@@ -71,4 +91,10 @@ image:
     resize: 45x45
     type: RGB565
     transparency: alpha_channel       
+    
+  - file: modules/assets/arrow_right_green.svg
+    id: arrow_right_green
+    resize: 15x10
+    type: RGB565
+    transparency: alpha_channel    
                 
