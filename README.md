@@ -31,4 +31,4 @@ This is the largest and higest resolution screen avalible for a low cost. It has
 
 ### Guition `ESP32-jc4827w543C` 4.3" 480px * 272px Smart Screen
 
-Great screen with an very bright IPS display and dimming. You can get it on Ali for $20 USD. Only problem is ity only has 4MB of flash. ESPhome only lets you use half the flash so you need to fit your code in 2MB. It even has a DAC + AMP and a connector for a speaker but try fitting the audio output code in 2MB!
+Great screen with an very bright IPS display and dimming. You can get it on Ali for $20 USD. Only problem is it only has 4MB of flash. ESPhome only lets you use half the flash so you need to fit your code in 2MB. It even has a DAC + AMP and a connector for a speaker but try fitting the audio output code in 2MB!
