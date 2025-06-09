@@ -4,22 +4,22 @@ lvgl:
     obj:
       border_width: 0
       pad_all: 0
-      radius: 0
+      radius: 0px
       bg_opa: TRANSP
       scrollable: false
-#      outline_width: 1
-#      outline_color: red
+      outline_width: 1
+      outline_color: red
     label:
       border_width: 0
       scrollable: false
       text_color: ${text_color}
-#      outline_width: 1
-#      outline_color: red
+      outline_width: 1
+      outline_color: red
     image:
       border_width: 0
       scrollable: false
-#      outline_width: 1
-#      outline_color: red
+      outline_width: 1
+      outline_color: red
     button:
       text_font: $text_font
       checkable: false

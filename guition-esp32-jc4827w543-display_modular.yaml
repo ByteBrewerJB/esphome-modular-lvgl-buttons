@@ -41,13 +41,13 @@ substitutions:
   screen_day_minute: '30'
 
   # Screen Size
-  screen_height: '320px'
-  screen_width: '240px'
+  screen_height: '272px'
+  screen_width: '480px'
 
 esphome:
-  name: "sunton-esp32-2432s028"
-  friendly_name: "Sunton 2432s028"
-  comment: "Sunton 2432s028 320px X 240px Smart Screen"
+  name: "guiton-esp32-jc4827w543c"
+  friendly_name: "Guiton jc4827w543C"
+  comment: "Guiton jc4827w543C 272px X 480px Smart Screen"
 
 # Time update script - This is run once per second. Use it to update any time related labels.
 script:
@@ -62,6 +62,8 @@ packages:
   wifi: !include modules/base/wifi.yaml
   # Basic ESP 32 stuff
   base: !include modules/base/base.yaml
+  # If you have a touch screen include this
+  touchscreen: !include modules/base/touchscreen.yaml
   # If your touch screen has a backlight include this
   backlight: !include modules/base/backlignt.yaml
   # All the colors
@@ -76,7 +78,7 @@ packages:
   theme_style: !include modules/base/theme_style.yaml
 
   # Harware description file
-  hardware: !include modules/hardware/sunton-esp32-2432s028R.yaml
+  hardware: !include modules/hardware/guiton-esp32-jc4827w543.yaml
 
   # This section will Update button and relay state from Home Assistant
   # Any button that has real time updates needs a section here
@@ -100,7 +102,7 @@ packages:
 lvgl:
 # Boot screen
   top_layer: !include
-    file: modules/screens/boot_screen_170x320.yaml
+    file: modules/screens/boot_screen_272x480.yaml
     vars:
       height: $screen_height
       width: $screen_width

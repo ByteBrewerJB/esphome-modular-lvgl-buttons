@@ -15,6 +15,3 @@ logger:
 #    touchscreen: info
 #    scheduler: none
 
-lvgl:
-  displays:
-    - my_display

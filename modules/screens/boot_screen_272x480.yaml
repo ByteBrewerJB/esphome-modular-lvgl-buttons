@@ -9,17 +9,18 @@
           bg_color: white
           bg_opa: COVER
           radius: 0
-          pad_all: 0
+          pad_all: 5
           widgets:
             - obj:
                   layout:
                     type: flex
                     flex_flow: COLUMN_WRAP
+                    pad_row: 2                    
                   height: ${screen_height}
                   width: ${screen_width}
                   text_font: $text_font
                   scrollable: false
-                  pad_all: 2
+
                   widgets:
                     - image:
                         src: boot_logo_20px
