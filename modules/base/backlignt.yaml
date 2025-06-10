@@ -33,13 +33,6 @@ time:
           - select.set:
               id: brightness_mode
               option: "Night"
-      - seconds: 0
-        minutes: $screen_day_minute
-        hours: $screen_day_hour
-        then:
-          - select.set:
-              id: brightness_mode
-              option: "Evening"
       - minutes: '*'
         seconds: 0
         then:
