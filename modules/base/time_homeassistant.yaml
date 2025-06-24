@@ -10,7 +10,7 @@ time:
             - text_sensor.template.publish:
                 id: device_last_restart
                 state: !lambda 'return id(system_time).now().strftime("%a %d %b %Y - %I:%M:%S %p");'
-    on_time:                
+    on_time:
       - minutes: '*'
         seconds: 0
         then:

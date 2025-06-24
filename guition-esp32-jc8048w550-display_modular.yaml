@@ -43,9 +43,9 @@ substitutions:
   screen_width: '800px'
 
 esphome:
-  name: "sunton-esp32-8048s070"
-  friendly_name: "Sunton_4848s040"
-  comment: "Sunton ESP32-S3-8048S070 480px X 800px Smart Screen"
+  name: "guiton-esp32-jc8048w550"
+  friendly_name: "Guiton jc8048w550"
+  comment: "Guiton jc8048w550 480px X 800px Smart Screen"
 
 # Time update script - This is run once per second. Use it to update any time related labels.
 script:
@@ -60,8 +60,6 @@ packages:
   wifi: !include modules/base/wifi.yaml
   # Basic ESP 32 stuff
   base: !include modules/base/base.yaml
-  # If you have a touch screen include this
-  touchscreen: !include modules/base/touchscreen.yaml
   # If your touch screen has a backlight include this
   backlight: !include modules/base/backlignt.yaml
   # All the colors
@@ -76,7 +74,7 @@ packages:
   theme_style: !include modules/base/theme_style.yaml
 
   # Harware description file
-  hardware: !include modules/hardware/sunton-esp32-8048s070.yaml
+  hardware: !include modules/hardware/guiton-esp32-jc8048w550.yaml
 
   # This section will Update button and relay state from Home Assistant
   # Any button that has real time updates needs a section here

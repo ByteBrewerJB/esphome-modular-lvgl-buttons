@@ -50,12 +50,12 @@ i2c:
   - id: bus_a
     sda: 19
     scl: 20
-    scan: true 
+    scan: true
 
 touchscreen:
   - platform: gt911
     id: my_touchscreen
-    i2c_id: bus_a  
+    i2c_id: bus_a
     transform:
       mirror_x: false
       mirror_y: false

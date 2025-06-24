@@ -45,7 +45,7 @@
                 id: wifi_signal_db_percent_label
                 text_color: black
                 text: "WiFi Strength: Not Connected"
-              
+
             - obj:
                radius: 0
                pad_all: 0

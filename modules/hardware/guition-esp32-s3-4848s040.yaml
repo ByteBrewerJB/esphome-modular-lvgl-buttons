@@ -47,7 +47,7 @@ output:
     pin: 40
   - id: internal_relay_2
     platform: gpio
-    pin: 2    
+    pin: 2
   - id: internal_relay_3
     platform: gpio
     pin: 1
@@ -75,7 +75,7 @@ touchscreen:
   platform: gt911
   id: my_touchscreen
   display: my_display
-  i2c_id: bus_a  
+  i2c_id: bus_a
   transform:
     mirror_x: false
   # on_touch:

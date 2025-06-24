@@ -1,4 +1,4 @@
-# Sunton 7" ESP32-S3-8048S070c 480px X 800px Smart Screen with Capacitive Touch Controller 
+# Sunton 7" ESP32-S3-8048S070c 480px X 800px Smart Screen with Capacitive Touch Controller
 # This file is for v1.1 or greater of this screen. the version is right next to the SD card slot.
 #
 # Hardware configuration file
@@ -63,7 +63,7 @@ speaker:
   - platform: resampler
     id: announcement_spk_resampling_input
     output_speaker: announcement_spk_mixer_input
-    
+
 media_player:
   - platform: speaker
     name: "Media Player"
@@ -80,7 +80,7 @@ media_player:
 #-------------------------------------------
 output:
   - platform: ledc
-    id: gpio_backlight_pwm  
+    id: gpio_backlight_pwm
     pin: 2
     frequency: 1220
 
@@ -105,7 +105,7 @@ touchscreen:
   platform: gt911
   id: my_touchscreen
   display: my_display
-  i2c_id: bus_a  
+  i2c_id: bus_a
   transform:
     mirror_x: false
     mirror_y: false

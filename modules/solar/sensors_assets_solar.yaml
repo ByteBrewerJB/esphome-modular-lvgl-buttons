@@ -10,7 +10,7 @@ sensor:
         - if:
             condition:
               lambda: 'return id(current_power_consumption).state < 9.999;'
-            then:              
+            then:
               - lvgl.label.update:
                   id: current_power_consumption_watts
                   text:
@@ -27,7 +27,7 @@ sensor:
                     args: [ 'id(current_power_consumption).state' ]
               - lvgl.label.update:
                   id: current_power_consumption_units
-                  text: kW                    
+                  text: kW
 
   - platform: homeassistant
     id: current_power_production
@@ -38,7 +38,7 @@ sensor:
         - if:
             condition:
               lambda: 'return id(current_power_production).state < 9.999;'
-            then:              
+            then:
               - lvgl.label.update:
                   id: current_power_production_watts
                   text:
@@ -55,7 +55,7 @@ sensor:
                     args: [ 'id(current_power_production).state' ]
               - lvgl.label.update:
                   id: current_power_production_units
-                  text: kW   
+                  text: kW
 
   - platform: homeassistant
     id: daily_energy_net_import
@@ -138,8 +138,8 @@ sensor:
             id: daily_energy_net_watts
             text:
               format: "%.1f"
-              args: [ 'fabs(id(daily_energy_net_sum).state)' ] # Always display a positive number               
-                  
+              args: [ 'fabs(id(daily_energy_net_sum).state)' ] # Always display a positive number
+
 #-------------------------------------------
 # Graphics and Fonts
 #-------------------------------------------
@@ -149,18 +149,18 @@ image:
     resize: 60x60
     type: RGB565
     transparency: alpha_channel
-    
+
   - file: modules/assets/house.svg
     id: house_icon
     resize: 30x30
     type: RGB565
     transparency: alpha_channel
-    
+
   - file: modules/assets/house.svg
     id: house_icon_60
     resize: 60x60
     type: RGB565
-    transparency: alpha_channel    
+    transparency: alpha_channel
 
   - file: modules/assets/grid_icon.svg
     id: grid_icon
@@ -173,12 +173,12 @@ image:
     resize: 30x30
     type: RGB565
     transparency: alpha_channel
-    
+
   - file: modules/assets/produced_icon.svg
     id: produced_icon_60
     resize: 60x60
     type: RGB565
-    transparency: alpha_channel    
+    transparency: alpha_channel
 
   - file: modules/assets/down_arrow.svg
     id: down_arrow
@@ -209,7 +209,7 @@ font:
     id: ep90
     size: 90
     bpp: 8
-    
+
   - file: "modules/assets/epVisuelt-Regular.ttf"
     id: ep32
     size: 32
@@ -218,9 +218,9 @@ font:
   - file: "modules/assets/epVisuelt-Regular.ttf"
     id: ep24
     size: 24
-    bpp: 8 
+    bpp: 8
 
   - file: "modules/assets/epVisuelt-Regular.ttf"
     id: ep16
     size: 16
-    bpp: 8                  
+    bpp: 8

@@ -15,5 +15,4 @@ widgets:
 on_short_click:
     then:
       lvgl.page.show: ${page}
-      
-     
+

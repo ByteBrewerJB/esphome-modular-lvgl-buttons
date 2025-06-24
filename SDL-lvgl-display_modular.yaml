@@ -77,7 +77,7 @@ packages:
   # Some basic sensors
   sensors: !include modules/sensors/sensors_base-SDL.yaml
   # Styles + Themes
-  theme_style: !include modules/base/theme_style.yaml 
+  theme_style: !include modules/base/theme_style.yaml
   # Get correct time from homeassistant
   time: !include modules/base/time_homeassistant.yaml
 
@@ -173,8 +173,8 @@ lvgl:
             vars:
               uid: button_6
               height: $button_height_single
-              page: RGB1              
-              
+              page: RGB1
+
         - button:
             height: $button_height_single
             id: button_6

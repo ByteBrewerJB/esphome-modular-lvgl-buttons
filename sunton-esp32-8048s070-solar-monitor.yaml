@@ -2,7 +2,7 @@
 substitutions:
   envoy_id: "202438007214"
   enpower_id: "482425004644"
-  
+
   lightbulb:         "\U000F0335"
   ceiling_light:     "\U000F0769"
   lamp:              "\U000F06B5"
@@ -17,7 +17,7 @@ substitutions:
 
   icon_font: light40
   text_font: roboto24
-  text_color: black  
+  text_color: black
   button_on_color: "ep_orange"
   button_off_color: "very_dark_gray"
   icon_on_color: "yellow"
@@ -51,12 +51,12 @@ esphome:
   friendly_name: "Solar Monitor"
   comment: "Enphase solar monitor"
   
-wifi:
-  ap:
-    ssid: "Solar Display Fallback Hotspot"
-    password: password
+api:
 
-captive_portal:  
+external_components:
+  - source: github://pr#9190
+    components: [lvgl]
+    refresh: 1h   
 
 # Time update script - This is run once per second. Use it to update any time related labels.
 script:
@@ -73,20 +73,29 @@ script:
       - lvgl.label.update:
           id: time_label
           text: !lambda 'return id(system_time).now().strftime("%l:%M");' # The format %I:%M %p will display the time in a 12-hour format with "am" or "pm" included
-          
+
 packages:
   # Generic configuration for ESP32 screens
+  # If you need Wi-Fi include this
   wifi: !include modules/base/wifi.yaml
-  base: !include modules/base/base.yaml
+  # If your touch screen has a backlight include this
+  backlight: !include modules/base/backlignt.yaml
+  # All the colors
   colors: !include modules/base/color.yaml
+  # Fonts you need
   fonts: !include modules/base/fonts.yaml
-  images: !include modules/base/images.yaml
-  time: !include modules/base/time_homeassistant.yaml
+  # Some basic sensors
   sensors: !include modules/sensors/sensors_base.yaml
+  # Styles + Themes
+  theme_style: !include modules/base/theme_style.yaml
+  # theme_style: !include modules/base/theme_style_debug.yaml
 
-  # Hardware description file
+  # Harware description file - for your board
   hardware: !include modules/hardware/sunton-esp32-8048s070.yaml
-  
+
+  # Basic boot screen with ESPHome logo and device diagnostic info
+  boot_screen: !include modules/screens/boot_screen_480x800.yaml
+
   solar: !include modules/solar/sensors_assets_solar.yaml
   battery: !include modules/solar/sensors_assets_battery.yaml
   # Icons for todays weather
@@ -114,7 +123,7 @@ text_sensor:
               id: weather_temperature_today
               text:
                 format: "%s°"
-                args: [ 'id(temperature).state.c_str()' ]     
+                args: [ 'id(temperature).state.c_str()' ]
 
 .shadow_box_styles:
     - &shadow_box_obj_base
@@ -127,7 +136,7 @@ text_sensor:
       shadow_opa: 50%
       shadow_width: 10
       shadow_ofs_x: 2
-      shadow_ofs_y: 2           
+      shadow_ofs_y: 2
       layout:
         type: grid
         grid_rows: [ content, content]
@@ -138,12 +147,6 @@ text_sensor:
 # LVGL pages and buttons
 # -------------------------------------------------------------------------
 lvgl:
-  theme: !include { file: modules/base/theme.yaml }
-  page_wrap: true
-
-# Boot screen
-  top_layer: !include { file: modules/screens/boot_screen.yaml }
-
 # Main Page
   pages:
     - id: main_page
@@ -157,8 +160,10 @@ lvgl:
         flex_align_track: center
         pad_row: 15
       bg_color: White
+      <<: !include
+        file: modules/sections/swipe_navigation.yaml      
       widgets:
-# Time box     
+# Time box
         - obj:
             <<: *shadow_box_obj_base
             widgets:
@@ -175,9 +180,9 @@ lvgl:
                     layout:
                       type: flex
                       flex_flow: ROW
-                      flex_align_main: START 
+                      flex_align_main: START
                       flex_align_cross: END
-                      flex_align_track: START                  
+                      flex_align_track: START
                       pad_column: 5
                     widgets:
                       - label:
@@ -194,7 +199,7 @@ lvgl:
                   text: "September 19, 1970"
 
 
-# Consumption box     
+# Consumption box
         - obj:
             <<: *shadow_box_obj_base
             widgets:
@@ -211,9 +216,9 @@ lvgl:
                     layout:
                       type: flex
                       flex_flow: ROW
-                      flex_align_main: START 
+                      flex_align_main: START
                       flex_align_cross: END
-                      flex_align_track: START                  
+                      flex_align_track: START
                       pad_column: 5
                     widgets:
                       - label:
@@ -234,7 +239,7 @@ lvgl:
                   text_color: black
                   text: Consumption
 
-# Production box      
+# Production box
         - obj:
             <<: *shadow_box_obj_base
             widgets:
@@ -251,9 +256,9 @@ lvgl:
                     layout:
                       type: flex
                       flex_flow: ROW
-                      flex_align_main: START 
+                      flex_align_main: START
                       flex_align_cross: END
-                      flex_align_track: START                  
+                      flex_align_track: START
                       pad_column: 5
                     widgets:
                       - label:
@@ -273,7 +278,7 @@ lvgl:
                   text_font: ep32
                   text_color: black
                   text: Production
-# Info bar     
+# Info bar
 
 
         - obj:
@@ -283,15 +288,15 @@ lvgl:
             layout:
               type: flex
               flex_flow: ROW
-              flex_align_main: SPACE_BETWEEN 
+              flex_align_main: SPACE_BETWEEN
               flex_align_cross: CENTER
-              flex_align_track: CENTER                   
+              flex_align_track: CENTER
               pad_column: 5
               pad_row: 5
             widgets:
               - obj:
                   width: 110
-                  height: 45                  
+                  height: 45
                   layout:
                     type: FLEX
                     flex_flow: COLUMN_WRAP
@@ -306,7 +311,7 @@ lvgl:
                         id: battery_soc
                         text_font: ep24
                         text_color: black
-                        text: ??%                        
+                        text: ??%
                     - label:
                         text_font: ep16
                         text_color: black
@@ -318,9 +323,9 @@ lvgl:
                   layout:
                     type: flex
                     flex_flow: ROW
-                    flex_align_main: CENTER 
+                    flex_align_main: CENTER
                     flex_align_cross: CENTER
-                    flex_align_track: CENTER                   
+                    flex_align_track: CENTER
                     pad_column: 5
                     pad_row: 5
                   widgets:
@@ -334,28 +339,28 @@ lvgl:
                         text: Grid failure
               - obj:
                   width: 110
-                  height: 45 
+                  height: 45
                   layout:
                     type: flex
                     flex_flow: ROW
-                    flex_align_main: CENTER 
+                    flex_align_main: CENTER
                     flex_align_cross: CENTER
-                    flex_align_track: CENTER                   
+                    flex_align_track: CENTER
                     pad_column: 5
                     pad_row: 5
                   widgets:
                     - image:
-                        id: weather_condition_icon                    
+                        id: weather_condition_icon
                         src: unknown_40
                     - label:
-                        id: weather_temperature_today                     
+                        id: weather_temperature_today
                         text_font: ep32
                         text_color: black
                         text: "100°"
 
 
-                      
-                        
+
+
 # Enphase app copy
         - obj:
             width: 470px
@@ -368,7 +373,7 @@ lvgl:
               pad_column: 1
               pad_row: 5
             widgets:
-        # Imported            
+        # Imported
               - image:
                   grid_cell_row_pos: 0
                   grid_cell_column_pos: 0
@@ -490,8 +495,8 @@ lvgl:
                       - label:
                           text_font: ep16
                           text_color: black
-                          text: Exported                        
-         # Produced               
+                          text: Exported
+         # Produced
               - image:
                   grid_cell_row_pos: 1
                   grid_cell_column_pos: 0
@@ -526,14 +531,14 @@ lvgl:
                         text_font: ep16
                         text_color: black
                         text: Produced
-              - image:                        
+              - image:
                   grid_cell_row_pos: 1
                   grid_cell_column_pos: 2
                   grid_cell_y_align: center
                   pad_right: 2
                   src: arrow_right_blue
-                  
-         # Net Imported           
+
+         # Net Imported
 
               - image:
                     id: daily_energy_net_watts_icon
@@ -541,7 +546,7 @@ lvgl:
                     grid_cell_column_pos: 5
                     grid_cell_y_align: center
                     pad_right: 2
-                    src: up_arrow  
+                    src: up_arrow
 
               - obj:
                     grid_cell_row_pos: 1
@@ -572,8 +577,8 @@ lvgl:
                           text_font: ep16
                           text_color: black
                           text: Net Imported
-                          
-         # Discharged                
+
+         # Discharged
               - image:
                   grid_cell_row_pos: 2
                   grid_cell_column_pos: 0
@@ -609,27 +614,27 @@ lvgl:
                         text_font: ep16
                         text_color: black
                         text: Discharged
-              - image:                        
+              - image:
                   grid_cell_row_pos: 2
                   grid_cell_column_pos: 2
                   grid_cell_y_align: center
                   pad_right: 2
                   src: arrow_right_green
-                  
+
          # charged
-              - image:                        
+              - image:
                   grid_cell_row_pos: 2
                   grid_cell_column_pos: 4
                   grid_cell_y_align: center
                   pad_right: 2
-                  src: arrow_right_green               
+                  src: arrow_right_green
 
               - image:
                     grid_cell_row_pos: 2
                     grid_cell_column_pos: 5
                     grid_cell_y_align: center
                     pad_right: 2
-                    src: battery 
+                    src: battery
 
               - obj:
                     grid_cell_row_pos: 2
@@ -659,8 +664,8 @@ lvgl:
                       - label:
                           text_font: ep16
                           text_color: black
-                          text: Charged  
+                          text: Charged
 
         - obj:
             width: 470px
-            height: 150px 
+            height: 150px

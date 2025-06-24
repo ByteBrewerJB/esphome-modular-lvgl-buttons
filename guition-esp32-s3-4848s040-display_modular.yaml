@@ -44,10 +44,24 @@ substitutions:
   screen_height: '480px'
   screen_width: '480px'
   
+external_components:
+  - source: github://pr#9190
+    components: [lvgl]
+    refresh: 1h  
+
 esphome:
-  name: "guition-esp32-4848s040"
-  friendly_name: "Guition480"
-  comment: "Guition ESP32-4848S040 480px * 480px Smart Screen"
+  name: "guition-4848s040"
+  friendly_name: "Guition 4848s040"
+  comment: "Guition ESP32-S3-4848S040 480px * 480px Smart Screen"
+
+api:
+
+logger:
+#  level: info
+#  logs:
+#    i2c.idf: info
+#    touchscreen: info
+#    scheduler: none
 
 # Time update script - This is run once per second. Use it to update any time related labels.
 script:
@@ -60,37 +74,27 @@ packages:
   # Generic configuration for ESP32 screens
   # If you need Wi-Fi include this
   wifi: !include modules/base/wifi.yaml
-  # Basic ESP 32 stuff
-  base: !include modules/base/base.yaml
-  # If you have a touch screen include this
-  touchscreen: !include modules/base/touchscreen.yaml
   # If your touch screen has a backlight include this
   backlight: !include modules/base/backlignt.yaml
   # All the colors
   colors: !include modules/base/color.yaml
   # Fonts you need
   fonts: !include modules/base/fonts.yaml
-  # Your Images
-  images: !include modules/base/images.yaml
   # Some basic sensors
   sensors: !include modules/sensors/sensors_base.yaml
   # Styles + Themes
   theme_style: !include modules/base/theme_style.yaml
+  # theme_style: !include modules/base/theme_style_debug.yaml
 
   # Harware description file - for your board
   hardware: !include modules/hardware/guition-esp32-s3-4848s040.yaml
 
+  # Basic boot screen with ESPHome logo and device diagnostic info
+  boot_screen: !include modules/screens/boot_screen_480x480.yaml
+
   # This section will Update button and relay state from Home Assistant
   # Any button that has real time updates needs a section here
 
-  # Button 1 - Local relay button with state updates
-  # ha_name - will show up as a control in Home Assistant
-  button_1_state: !include
-    file: modules/sensors/local_relay_button_state.yaml
-    vars:
-      uid: button_1
-      ha_name: Relay 1
-      entity_id: internal_relay_1
   # Button 2 - Standard light button with state updates
   button_2_state: !include
     file: modules/sensors/switch_or_light_button_state.yaml
@@ -108,13 +112,6 @@ packages:
 # LVGL pages and buttons
 # -------------------------------------------------------------------------
 lvgl:
-# Boot screen
-  top_layer: !include
-    file: modules/screens/boot_screen.yaml
-    vars:
-      height: $screen_height
-      width: $screen_width
-
 # Main Page
   pages:
     - id: main_page
@@ -123,15 +120,11 @@ lvgl:
         flex_flow: COLUMN_WRAP
       width: 100%
       styles: page_style
+      bg_color: black
+      bg_opa: cover
+      <<: !include
+        file: modules/sections/swipe_navigation.yaml
       widgets:
-        # Button 1 - Standard (double hight) internal relay button with state updates
-        - button: !include
-            file: modules/buttons/local_relay_button.yaml
-            vars:
-              uid: button_1
-              height: $button_height_double
-              text: Local Light
-              icon: $lightbulb
         # Button 2 - Standard light button with state updates
         - button: !include
             file: modules/buttons/switch_button.yaml

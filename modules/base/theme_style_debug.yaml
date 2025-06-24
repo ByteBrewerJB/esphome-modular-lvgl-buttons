@@ -34,7 +34,7 @@ lvgl:
       text_color: $label_off_color
 
   style_definitions:
-    - id: page_style 
+    - id: page_style
       bg_color: black
       bg_opa: cover
       pad_all: 5
@@ -58,7 +58,7 @@ select:
               - lvgl.style.update:
                   id: page_style
                   bg_color: black
-              - lvgl.widget.redraw                  
+              - lvgl.widget.redraw
         - if:
             condition:
               - lambda: 'return id(current_theme).state == "Light";'

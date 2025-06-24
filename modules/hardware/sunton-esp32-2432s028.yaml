@@ -10,18 +10,18 @@ esp32:
   framework:
     type: arduino
 
-preferences:    
-  flash_write_interval: 5min    
+preferences:
+  flash_write_interval: 5min
 
 i2c:
   - sda: 27
     scl: 22
-    
+
 # sensor:
 #   - platform: adc
 #     pin: 34
 #     name: "Brightness"
-#     update_interval: 60s    
+#     update_interval: 60s
 
 #-------------------------------------------
 # Backlight
@@ -41,7 +41,7 @@ output:
   - id: output_blue
     platform: ledc
     pin: 17
-    inverted: true    
+    inverted: true
 
 light:
   - platform: monochromatic # Define a monochromatic, dimmable light for the backlight
@@ -55,7 +55,7 @@ light:
     red: output_red
     green: output_green
     blue: output_blue
-    restore_mode: ALWAYS_OFF    
+    restore_mode: ALWAYS_OFF
 
 spi:
   - id: tft
@@ -81,7 +81,7 @@ touchscreen:
       x_max: 3860
       y_min: 340
       y_max: 3860
-    transform:        
+    transform:
       mirror_x: false  # original used to be true
       mirror_y: true  #added this line
       swap_xy: false  #added this line

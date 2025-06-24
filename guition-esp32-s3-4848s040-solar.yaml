@@ -16,7 +16,7 @@ substitutions:
   icon_font: light40
   text_font: roboto24
   text_color: white
-  bg_color: black  
+  bg_color: black
   button_on_color: "ep_orange"
   button_off_color: "very_dark_gray"
   icon_on_color: "yellow"
@@ -79,7 +79,7 @@ packages:
 
   # Harware description file - for your board
   hardware: !include modules/hardware/guition-esp32-s3-4848s040.yaml
-  
+
   # Extra code for pages
   solar: !include modules/solar/sensors_assets_solar.yaml
 
@@ -189,7 +189,7 @@ lvgl:
               pad_column: 1
               pad_row: 5
             widgets:
-# Imported            
+# Imported
               - image:
                   grid_cell_row_pos: 0
                   grid_cell_column_pos: 0
@@ -303,8 +303,8 @@ lvgl:
                       - label:
                           text_font: ep14
                           text_color: black
-                          text: Exported                        
-         # Produced               
+                          text: Exported
+         # Produced
               - image:
                   grid_cell_row_pos: 1
                   grid_cell_column_pos: 0
@@ -340,7 +340,7 @@ lvgl:
                         text_font: ep14
                         text_color: black
                         text: Produced
-         # Net Imported           
+         # Net Imported
               - obj:
                     grid_cell_row_pos: 1
                     grid_cell_column_pos: 4
@@ -353,7 +353,7 @@ lvgl:
                     grid_cell_column_pos: 5
                     pad_top: 10
                     pad_right: 2
-                    src: up_arrow  
+                    src: up_arrow
 
               - obj:
                     grid_cell_row_pos: 1
@@ -382,7 +382,7 @@ lvgl:
                       - label:
                           text_font: ep14
                           text_color: black
-                          text: Net Imported       
+                          text: Net Imported
       on_click:
         then:
           lvgl.page.show: main_page

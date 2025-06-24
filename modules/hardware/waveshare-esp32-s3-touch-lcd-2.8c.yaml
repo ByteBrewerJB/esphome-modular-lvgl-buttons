@@ -6,7 +6,7 @@ esphome:
   min_version: 2025.4.0
   project:
     name: "Sunton.ESP32-S3-8048S070"
-    version: "1.0"    
+    version: "1.0"
 
 esp32:
   board: esp32-s3-devkitc-1
@@ -28,12 +28,12 @@ psram:
 
 preferences:
   flash_write_interval: 5min
-  
+
 # PCA9554 GPIO extender
 pca9554:
   - id: p_c_a
     address: 0x20
-    i2c_id: i2c_bus  
+    i2c_id: i2c_bus
 
 # Backlight PWM output and light component
 output:
