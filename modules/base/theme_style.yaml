@@ -3,10 +3,10 @@ lvgl:
   theme:
     obj:
       border_width: 0
+      scrollable: false      
       pad_all: 0
       radius: 0
       bg_opa: TRANSP
-      scrollable: false
 #      outline_width: 1
 #      outline_color: red
     label:

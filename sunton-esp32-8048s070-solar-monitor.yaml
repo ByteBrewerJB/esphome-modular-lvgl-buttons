@@ -34,7 +34,10 @@ substitutions:
   # Boot screen configuration
   boot_screen_delay: 60s
 
-  # Set Night mode  at Mightnight
+  # LCD backlight modes - Code in backlight.yaml
+  # Day mode is set to Sunrise
+  # Evening mode is set to sunset
+  # Set Night mode to Mightnight here
   screen_night_hour: '0'
   screen_night_minute: '0'
 
@@ -53,10 +56,17 @@ esphome:
   
 api:
 
-external_components:
-  - source: github://pr#9190
-    components: [lvgl]
-    refresh: 1h   
+logger:
+#  level: info
+#  logs:
+#    i2c.idf: info
+#    touchscreen: info
+#    scheduler: none
+
+# external_components:
+  # - source: github://pr#9190
+    # components: [lvgl]
+    # refresh: 1h   
 
 # Time update script - This is run once per second. Use it to update any time related labels.
 script:
@@ -75,7 +85,6 @@ script:
           text: !lambda 'return id(system_time).now().strftime("%l:%M");' # The format %I:%M %p will display the time in a 12-hour format with "am" or "pm" included
 
 packages:
-  # Generic configuration for ESP32 screens
   # If you need Wi-Fi include this
   wifi: !include modules/base/wifi.yaml
   # If your touch screen has a backlight include this
@@ -88,15 +97,18 @@ packages:
   sensors: !include modules/sensors/sensors_base.yaml
   # Styles + Themes
   theme_style: !include modules/base/theme_style.yaml
+  # Switch to this one for debugging
   # theme_style: !include modules/base/theme_style_debug.yaml
 
-  # Harware description file - for your board
+  # Harware description file
   hardware: !include modules/hardware/sunton-esp32-8048s070.yaml
-
+  
   # Basic boot screen with ESPHome logo and device diagnostic info
   boot_screen: !include modules/screens/boot_screen_480x800.yaml
 
+  # Get solar panel info from Enphase
   solar: !include modules/solar/sensors_assets_solar.yaml
+  # Get backup Battery info from Enphase
   battery: !include modules/solar/sensors_assets_battery.yaml
   # Icons for todays weather
   weather_icons_40: !include
@@ -125,11 +137,13 @@ text_sensor:
                 format: "%s°"
                 args: [ 'id(temperature).state.c_str()' ]
 
+# Nice little box with a boder and shadow. 
 .shadow_box_styles:
     - &shadow_box_obj_base
       width: 310px
       height: 140px
       bg_color: gray200
+      scrollable: false
       radius: 20
       pad_all: 10
       shadow_color: 0
@@ -163,7 +177,7 @@ lvgl:
       <<: !include
         file: modules/sections/swipe_navigation.yaml      
       widgets:
-# Time box
+# Time/date display box
         - obj:
             <<: *shadow_box_obj_base
             widgets:
@@ -223,7 +237,7 @@ lvgl:
                     widgets:
                       - label:
                           id: current_power_consumption_watts
-                          text_font: ep90
+                          text_font: ep80
                           text_color: black
                           text: 8888
                       - label:
@@ -263,7 +277,7 @@ lvgl:
                     widgets:
                       - label:
                           id: current_power_production_watts
-                          text_font: ep90
+                          text_font: ep80
                           text_color: black
                           text: 8888
                       - label:
@@ -279,8 +293,6 @@ lvgl:
                   text_color: black
                   text: Production
 # Info bar
-
-
         - obj:
             width: 470px
             height: 50px
@@ -357,9 +369,6 @@ lvgl:
                         text_font: ep32
                         text_color: black
                         text: "100°"
-
-
-
 
 # Enphase app copy
         - obj:
@@ -666,6 +675,7 @@ lvgl:
                           text_color: black
                           text: Charged
 
+# Blank object to take up space
         - obj:
             width: 470px
             height: 150px

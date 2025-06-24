@@ -12,7 +12,9 @@ lvgl:
   style_definitions:
     - id: boot_screen_style
       text_font: roboto24
-      text_color: black # not working at the moment
+      text_color: black
+      bg_color: white
+      bg_opa: cover
 
   pages:
     - id: boot_screen

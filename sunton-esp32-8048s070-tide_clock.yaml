@@ -47,19 +47,37 @@ esphome:
   name: "tideweather"
   friendly_name: "tideweather"
   comment: "Tide and weather screen"
+  
+api:
+
+logger:
+#  level: info
+#  logs:
+#    i2c.idf: info
+#    touchscreen: info
+#    scheduler: none  
 
 packages:
-  # Generic configuration for ESP32 screens
+  # If you need Wi-Fi include this
   wifi: !include modules/base/wifi.yaml
-  base: !include modules/base/base.yaml
+  # If your touch screen has a backlight include this
+  backlight: !include modules/base/backlignt.yaml
+  # All the colors
   colors: !include modules/base/color.yaml
+  # Fonts you need
   fonts: !include modules/base/fonts.yaml
-  images: !include modules/base/images.yaml
-  time: !include modules/base/time_homeassistant.yaml
+  # Some basic sensors
   sensors: !include modules/sensors/sensors_base.yaml
+  # Styles + Themes
+  theme_style: !include modules/base/theme_style.yaml
+  # Switch to this one for debugging
+  # theme_style: !include modules/base/theme_style_debug.yaml
 
-  # Hardware description file
+  # Harware description file
   hardware: !include modules/hardware/sunton-esp32-8048s070.yaml
+  
+  # Basic boot screen with ESPHome logo and device diagnostic info
+  boot_screen: !include modules/screens/boot_screen_480x800.yaml
 
   # Tide forcast packages
   tides: !include modules/tides/tide_update.yaml
@@ -139,12 +157,6 @@ script:
 # LVGL pages and buttons
 # -------------------------------------------------------------------------
 lvgl:
-  theme: !include { file: modules/base/theme.yaml }
-  page_wrap: true
-
-# Boot screen
-  top_layer: !include { file: modules/screens/boot_screen.yaml }
-
 # Main Page
   pages:
       - id: main_page
@@ -436,4 +448,3 @@ lvgl:
                 text_align: right
                 text_font: roboto24
                 text: "00:00 am"
-

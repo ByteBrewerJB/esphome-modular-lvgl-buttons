@@ -44,10 +44,10 @@ substitutions:
   screen_height: '480px'
   screen_width: '480px'
   
-external_components:
-  - source: github://pr#9190
-    components: [lvgl]
-    refresh: 1h  
+# external_components:
+  # - source: github://pr#9190
+    # components: [lvgl]
+    # refresh: 1h  
 
 esphome:
   name: "guition-4848s040"
@@ -71,7 +71,6 @@ script:
           // No operation
 
 packages:
-  # Generic configuration for ESP32 screens
   # If you need Wi-Fi include this
   wifi: !include modules/base/wifi.yaml
   # If your touch screen has a backlight include this
@@ -84,6 +83,7 @@ packages:
   sensors: !include modules/sensors/sensors_base.yaml
   # Styles + Themes
   theme_style: !include modules/base/theme_style.yaml
+  # Switch to this one for debugging
   # theme_style: !include modules/base/theme_style_debug.yaml
 
   # Harware description file - for your board
@@ -92,7 +92,7 @@ packages:
   # Basic boot screen with ESPHome logo and device diagnostic info
   boot_screen: !include modules/screens/boot_screen_480x480.yaml
 
-  # This section will Update button and relay state from Home Assistant
+  # This section will Update button state and relay state from Home Assistant
   # Any button that has real time updates needs a section here
 
   # Button 2 - Standard light button with state updates

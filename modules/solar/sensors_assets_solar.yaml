@@ -1,4 +1,4 @@
-#You need at add energy_info.yaml to your configuration.yaml
+#You need at add energy_info.yaml to your Home Assistant configuration.yaml
 ---
 sensor:
   - platform: homeassistant
@@ -209,6 +209,11 @@ font:
     id: ep90
     size: 90
     bpp: 8
+    
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep80
+    size: 80
+    bpp: 8    
 
   - file: "modules/assets/epVisuelt-Regular.ttf"
     id: ep32

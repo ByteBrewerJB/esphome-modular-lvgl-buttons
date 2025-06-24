@@ -9,7 +9,7 @@ esphome:
 api:
 
 logger:
-#  level: info
+  level: info
 #  logs:
 #    i2c.idf: info
 #    touchscreen: info
