@@ -40,6 +40,7 @@ light:
   - platform: monochromatic
     output: gpio_backlight_pwm
     name: Display Backlight
+    icon: mdi:lightbulb-on
     id: display_backlight
     restore_mode: ALWAYS_ON
 

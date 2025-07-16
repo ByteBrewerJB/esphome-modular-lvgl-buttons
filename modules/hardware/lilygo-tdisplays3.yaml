@@ -95,6 +95,7 @@ light:
   - platform: monochromatic
     output: GPIO38
     name: Display Backlight
+    icon: mdi:lightbulb-on
     id: display_backlight
     restore_mode: ALWAYS_ON
 
