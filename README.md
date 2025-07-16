@@ -2,6 +2,7 @@
 
 ## Supported Devices
 * Guition `ESP32-4848s040` 4.0" with capacitive touch 120v/220v relays and built in power supply + USB-C [AliExpress Link](https://www.aliexpress.com/item/3256806436431838.html).
+* Guition `ESP32-JC8048W550` 5.0" with capacitive touch USB-C [AliExpress Link](https://www.aliexpress.com/item/3256806546911788.html).
 * Guition `ESP32-jc4827w543C` 4.3" with capactivive touch and USB-C  [AliExpress Link](https://www.aliexpress.com/item/3256806543342794.html).
 * Sunton `ESP32-8048S043` 4.3" with capactivive touch and USB-C [AliExpress Link](https://www.aliexpress.com/item/1005004788147691.html).
 * Sunton `ESP32-8048S050` 5.0" with capactivive touch and USB-C [AliExpress Link](https://www.aliexpress.com/item/1005004952694042.html).
@@ -24,6 +25,10 @@ The SDL display platform allows you to use create an ESPHome display on a deskto
 ### Guition `ESP32-4848s040` 4.0" 480px * 480px Smart Screen
 
 This is a really great little screen. It has 120v/240v relays so it can control lights directly.  guition-esp32-s3-4848s040-display_modular.yaml has a boot screen, a system for dimming the backlight at night and some basic buttons for controlling local and Home Assistant devices.
+
+### Guition `ESP32-4JC8048W550` 5.0" 480px * 800px Smart Screen
+
+This is one of the best screens I have found so far. Bright IPS display, 16MB flash, Qwiic (i2c) port, speaker port and low cost
 
 ### Sunton `ESP32-8048s070` 7.0" 480px * 800px Smart Screen
 
