@@ -29,7 +29,7 @@ substitutions:
   button_width: '150px'
   touchscreen_idle_timeout: "30s"
   touchscreen_daytime_brightness: "100%"
-  touchscreen_nighttime_brightness: "50%"
+  touchscreen_nighttime_brightness: "85%"
   # Boot screen configuration
   boot_screen_delay: 60s
 

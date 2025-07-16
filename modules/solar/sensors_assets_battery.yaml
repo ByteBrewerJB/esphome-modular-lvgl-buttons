@@ -43,7 +43,7 @@ binary_sensor:
     id: current_grid_status
     entity_id: binary_sensor.enpower_${enpower_id}_grid_status
     internal: true
-    publish_initial_state: true
+    trigger_on_initial_state: true
     on_state:
       then:
         - if:
