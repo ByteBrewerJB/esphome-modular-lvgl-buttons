@@ -47,6 +47,15 @@ esphome:
   friendly_name: "Waveshare7"
   comment: "Waveshare 7” ESP32-S3N8R8 Capacitive Touch Display 800×480"
 
+api:
+
+logger:
+#  level: info
+#  logs:
+#    i2c.idf: info
+#    touchscreen: info
+#    scheduler: none
+
 # Time update script - This is run once per second. Use it to update any time related labels.
 script:
   - id: time_update
