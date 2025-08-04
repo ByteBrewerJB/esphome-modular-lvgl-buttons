@@ -65,18 +65,6 @@ output:
         output: true
     id: gpio_backlight_pwm
     
-switch:
-  - platform: gpio
-    id: lcdbacklight
-    name: lcdbacklight
-    pin:
-      waveshare_io: waveshare_io_hub
-      number: 2
-      mode:
-        output: true
-      inverted: false
-    restore_mode: ALWAYS_ON
-
 light:
   - platform: monochromatic
     output: gpio_backlight_pwm
