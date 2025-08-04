@@ -45,42 +45,45 @@ preferences:
 #-------------------------------------------
 # IO Extender
 #-------------------------------------------
-ch422g:
-  - id: ch422g_hub
+external_components:
+  - source: github://pr#10071
+    components: [waveshare_io]
+    refresh: 1h
+
+waveshare_io:
+  - id: waveshare_io_hub
 
 #-------------------------------------------
 # Back light
 #-------------------------------------------
-# This one is only on and off
+output:
+  - platform: ledc
+    pin:
+      waveshare_io: waveshare_io_hub
+      number: 2
+      mode:
+        output: true
+    id: gpio_backlight_pwm
+    
 switch:
   - platform: gpio
     id: lcdbacklight
     name: lcdbacklight
     pin:
-      ch422g: ch422g_hub
+      waveshare_io: waveshare_io_hub
       number: 2
       mode:
         output: true
       inverted: false
     restore_mode: ALWAYS_ON
 
-# Had to add this fake one so all the code still works.
-
 light:
   - platform: monochromatic
-    name: "Display Backlight"
-    output: fake_backlight_output
+    output: gpio_backlight_pwm
+    name: Display Backlight
+    icon: mdi:lightbulb-on
     id: display_backlight
-    default_transition_length: 1s
-    gamma_correct: 2.8
-
-output:
-  - platform: template
-    id: fake_backlight_output
-    type: float
-    write_action:
-      - lambda: |-
-          ESP_LOGD("fake_light", "Fake brightness level: %.2f", state);
+    restore_mode: ALWAYS_ON
 
 #-------------------------------------------
 # Touchscreen gt911
@@ -99,7 +102,7 @@ touchscreen:
   i2c_id: bus_a
   interrupt_pin: GPIO4
   reset_pin:
-    ch422g: ch422g_hub
+    waveshare_io: waveshare_io_hub
     number: 1
     mode: OUTPUT
   on_touch:
@@ -137,7 +140,7 @@ display:
     pclk_pin: 7
     pclk_inverted: true
     reset_pin:
-      ch422g: ch422g_hub
+      waveshare_io: waveshare_io_hub
       number: 3
     hsync_back_porch: 152
     hsync_front_porch: 48

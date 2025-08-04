@@ -44,9 +44,9 @@ substitutions:
   screen_width: '800px'
 
 esphome:
-  name: "guiton-esp32-jc8048w550"
-  friendly_name: "Guiton jc8048w550"
-  comment: "Guiton jc8048w550 480px X 800px Smart Screen"
+  name: "guition-esp32-jc8048w550"
+  friendly_name: "Guition jc8048w550"
+  comment: "Guition jc8048w550 480px X 800px Smart Screen"
   
 api:
 
@@ -81,7 +81,7 @@ packages:
   # theme_style: !include modules/base/theme_style_debug.yaml
 
   # Harware description file
-  hardware: !include modules/hardware/guiton-esp32-jc8048w550.yaml
+  hardware: !include modules/hardware/guition-esp32-jc8048w550.yaml
   
   # Basic boot screen with ESPHome logo and device diagnostic info
   boot_screen: !include modules/screens/boot_screen_480x800.yaml  

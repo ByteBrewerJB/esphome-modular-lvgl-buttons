@@ -44,9 +44,9 @@ substitutions:
   screen_width: '480px'
 
 esphome:
-  name: "guiton-esp32-jc4827w543c"
-  friendly_name: "Guiton jc4827w543C"
-  comment: "Guiton jc4827w543C 272px X 480px Smart Screen"
+  name: "guition-esp32-jc4827w543c"
+  friendly_name: "Guition jc4827w543C"
+  comment: "Guition jc4827w543C 272px X 480px Smart Screen"
 
 # Time update script - This is run once per second. Use it to update any time related labels.
 script:
@@ -77,7 +77,7 @@ packages:
   theme_style: !include modules/base/theme_style.yaml
 
   # Harware description file
-  hardware: !include modules/hardware/guiton-esp32-jc4827w543.yaml
+  hardware: !include modules/hardware/guition-esp32-jc4827w543.yaml
 
   # This section will Update button and relay state from Home Assistant
   # Any button that has real time updates needs a section here
