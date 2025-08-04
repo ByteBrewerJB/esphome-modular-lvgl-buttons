@@ -1,9 +1,6 @@
-# waveshare 7” ESP32-S3N8R8 Capacitive Touch Display 800×480
+# waveshare 7” ESP32-S3N8R8 Capacitive Touch Display 1024×600
 # 512KB SRAM and 384KB ROM, with onboard 16MB Flash and 8MB PSRAM
-# https://www.waveshare.com/esp32-s3-touch-lcd-7.htm
-# Add brightness control
-#   https://community.home-assistant.io/t/esp32-s3-7inch-capacitive-touch-display-adjust-brightness/771030
-#
+# https://www.waveshare.com/esp32-s3-lcd-7b.htm
 # Hardware configuration file
 
 esphome:
@@ -15,9 +12,9 @@ esphome:
     board_upload.maximum_ram_size: 524288
 
 esp32:
-  board: esp32-s3-devkitc-1
-  variant: ESP32S3
+  board: esp32s3box
   flash_size: 16MB
+  cpu_frequency: 240MHz
   framework:
     type: esp-idf
     sdkconfig_options:
@@ -125,10 +122,10 @@ display:
     update_interval: never
     auto_clear_enabled: false
     color_order: RGB
-    pclk_frequency: 16MHZ
+    pclk_frequency: 30MHZ
     dimensions:
-      width: 800
-      height: 480
+      width: 1024
+      height: 600
     de_pin:
       number: 5
     hsync_pin:
@@ -142,12 +139,12 @@ display:
     reset_pin:
       ch422g: ch422g_hub
       number: 3
-    hsync_back_porch: 8
-    hsync_front_porch: 8
-    hsync_pulse_width: 4
-    vsync_back_porch: 16
-    vsync_front_porch: 16
-    vsync_pulse_width: 4
+    hsync_back_porch: 152
+    hsync_front_porch: 48
+    hsync_pulse_width: 162
+    vsync_back_porch: 13
+    vsync_front_porch: 3
+    vsync_pulse_width: 45
     data_pins:
       red:
         - 1         #r3
