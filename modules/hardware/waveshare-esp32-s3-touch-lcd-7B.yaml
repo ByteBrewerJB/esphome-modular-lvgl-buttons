@@ -58,6 +58,9 @@ waveshare_io:
 output:
   - platform: waveshare_io
     id: pwm_backlight_output
+    inverted: true
+    min_power: 0.03
+    max_power: 1.0
     
 light:
   - platform: monochromatic
@@ -65,7 +68,17 @@ light:
     name: Display Backlight
     icon: mdi:lightbulb-on
     id: display_backlight
-    restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_ON
+    
+switch:
+  - platform: gpio
+    name: "Display Backlight"
+    id: exio2
+    pin: 
+      waveshare_io: waveshare_io_hub
+      number: 2
+      mode: 
+        output: true    
 
 #-------------------------------------------
 # Touchscreen gt911
