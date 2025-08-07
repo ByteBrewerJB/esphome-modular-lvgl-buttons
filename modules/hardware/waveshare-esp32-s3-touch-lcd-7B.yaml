@@ -12,15 +12,14 @@ esphome:
     board_upload.maximum_ram_size: 524288
 
 esp32:
-  board: esp32s3box
+  board: esp32-s3-devkitc-1
+  variant: ESP32S3
   flash_size: 16MB
-  cpu_frequency: 240MHz
+  cpu_frequency: 240MHz  
   framework:
     type: esp-idf
     sdkconfig_options:
       COMPILER_OPTIMIZATION_SIZE: y
-      CONFIG_ESP32S3_DATA_CACHE_64KB: "y"
-      CONFIG_ESPTOOLPY_FLASHSIZE_8MB: "y"
       CONFIG_FREERTOS_HZ: "1000"
       CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240: y
       CONFIG_ESPTOOLPY_FLASHMODE_QIO: y
@@ -57,26 +56,20 @@ waveshare_io:
 # Back light
 #-------------------------------------------
 output:
-  - platform: ledc
-    pin:
-      waveshare_io: waveshare_io_hub
-      number: 2
-      mode:
-        output: true
-    id: gpio_backlight_pwm
+  - platform: waveshare_io
+    id: pwm_backlight_output
     
 light:
   - platform: monochromatic
-    output: gpio_backlight_pwm
+    output: pwm_backlight_output
     name: Display Backlight
     icon: mdi:lightbulb-on
     id: display_backlight
-    restore_mode: ALWAYS_ON
+    restore_mode: ALWAYS_OFF
 
 #-------------------------------------------
 # Touchscreen gt911
 #-------------------------------------------
-
 i2c:
   - id: bus_a
     sda: 8
@@ -89,10 +82,10 @@ touchscreen:
   display: my_display
   i2c_id: bus_a
   interrupt_pin: GPIO4
-  reset_pin:
-    waveshare_io: waveshare_io_hub
-    number: 1
-    mode: OUTPUT
+  # reset_pin:
+    # waveshare_io: waveshare_io_hub
+    # number: 1
+    # mode: OUTPUT
   on_touch:
     - lambda: |-
         ESP_LOGI("Touch", "Touch detected at x=%d, y=%d", touch.x, touch.y);
@@ -127,9 +120,9 @@ display:
       ignore_strapping_warning: true
     pclk_pin: 7
     pclk_inverted: true
-    reset_pin:
-      waveshare_io: waveshare_io_hub
-      number: 3
+    # reset_pin:
+      # waveshare_io: waveshare_io_hub
+      # number: 3
     hsync_back_porch: 152
     hsync_front_porch: 48
     hsync_pulse_width: 162

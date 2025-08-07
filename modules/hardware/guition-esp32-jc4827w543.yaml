@@ -24,6 +24,11 @@ esp32:
       CONFIG_ESP32S3_DATA_CACHE_LINE_64B: "y"
       CONFIG_SPIRAM_FETCH_INSTRUCTIONS: y
       CONFIG_SPIRAM_RODATA: y
+    advanced:
+    # Save 4k of space in flash
+      assertion_level: DISABLE
+      enable_lwip_mdns_queries: false
+      enable_lwip_bridge_interface: false      
 
 psram:
   mode: octal
@@ -31,7 +36,6 @@ psram:
 
 preferences:
   flash_write_interval: 5min
-
 
 # -------------------------------------------
 # Internal outputs

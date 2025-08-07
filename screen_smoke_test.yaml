@@ -12,7 +12,8 @@ logger:
 api:
 
 ota:
-  platform: esphome
+  - platform: esphome
+  - platform: web_server
 
 wifi:
   ssid: !secret wifi_ssid
@@ -20,6 +21,6 @@ wifi:
 
 packages:
   # Harware description file
-  hardware: !include modules/hardware/sunton-esp32-2432s028R.yaml
+  hardware: !include modules/hardware/waveshare-esp32-s3-touch-lcd-7B.yaml
 
 lvgl:
