@@ -136,7 +136,7 @@ text_sensor:
 .shadow_box_styles:
     - &shadow_box_obj_base
       width: 310px
-      height: 180px
+      height: 175px
       bg_color: gray200
       scrollable: false
       radius: 20
@@ -183,7 +183,7 @@ lvgl:
               - obj:
                     grid_cell_row_pos: 0
                     grid_cell_column_pos: 1
-                    width: 240px
+                    width: 250px
                     height: 75px
                     bg_opa: TRANSP
                     layout:
@@ -289,7 +289,7 @@ lvgl:
                   text: Production
 # Info bar
         - obj:
-            width: 470px
+            width: 680px
             height: 50px
             pad_left: 4
             layout:
@@ -367,7 +367,7 @@ lvgl:
 
 # Enphase app copy
         - obj:
-            width: 470px
+            width: 680px
             height: 200px
             pad_left: 4
             layout:
