@@ -89,7 +89,6 @@ output:
 #-------------------------------------------
 # Touchscreen gt911
 #-------------------------------------------
-
 i2c:
   - id: bus_a
     sda: 8
@@ -106,16 +105,16 @@ touchscreen:
     ch422g: ch422g_hub
     number: 1
     mode: OUTPUT
-  on_touch:
-    - lambda: |-
-        ESP_LOGI("Touch", "Touch detected at x=%d, y=%d", touch.x, touch.y);
-  on_update:
-    - lambda: |-
-          for (auto touch: touches)  {
-              if (touch.state <= 2) {
-                ESP_LOGI("Touch points:", "id=%d x=%d, y=%d x.raw=%d, y.raw=%d", touch.id, touch.x, touch.y, touch.x_raw, touch.y_raw);
-              }
-          }
+  # on_touch:
+    # - lambda: |-
+        # ESP_LOGI("Touch", "Touch detected at x=%d, y=%d", touch.x, touch.y);
+  # on_update:
+    # - lambda: |-
+          # for (auto touch: touches)  {
+              # if (touch.state <= 2) {
+                # ESP_LOGI("Touch points:", "id=%d x=%d, y=%d x.raw=%d, y.raw=%d", touch.id, touch.x, touch.y, touch.x_raw, touch.y_raw);
+              # }
+          # }
 
 #-------------------------------------------
 # Display

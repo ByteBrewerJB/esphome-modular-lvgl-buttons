@@ -46,8 +46,8 @@ substitutions:
   screen_day_minute: '30'
 
   # Screen Size
-  screen_height: '480px'
-  screen_width: '800px'
+  screen_height: '600px'
+  screen_width: '1024px'
 
 esphome:
   name: "solar-monitor"
@@ -136,7 +136,7 @@ text_sensor:
 .shadow_box_styles:
     - &shadow_box_obj_base
       width: 310px
-      height: 140px
+      height: 180px
       bg_color: gray200
       scrollable: false
       radius: 20

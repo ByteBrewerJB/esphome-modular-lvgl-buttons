@@ -53,15 +53,29 @@ waveshare_io:
   - id: waveshare_io_hub
 
 #-------------------------------------------
-# Back light
+# LCD Back light
 #-------------------------------------------
 output:
+  - platform: waveshare_io
+    id: backlight_output
+
   - platform: waveshare_io
     id: pwm_backlight_output
     inverted: true
     min_power: 0.03
     max_power: 1.0
-    
+
+switch:
+  - platform: gpio
+    internal: True
+    id: exio2
+    restore_mode: ALWAYS_ON
+    pin: 
+      waveshare_io: waveshare_io_hub
+      number: 2
+      mode: 
+        output: true
+
 light:
   - platform: monochromatic
     output: pwm_backlight_output
@@ -69,16 +83,13 @@ light:
     icon: mdi:lightbulb-on
     id: display_backlight
     restore_mode: ALWAYS_ON
-    
-switch:
-  - platform: gpio
-    name: "Display Backlight"
-    id: exio2
-    pin: 
-      waveshare_io: waveshare_io_hub
-      number: 2
-      mode: 
-        output: true    
+    default_transition_length: 250ms
+    on_turn_on: 
+      then:
+        - switch.turn_on: exio2
+    on_turn_off: 
+      then:
+        - switch.turn_off: exio2      
 
 #-------------------------------------------
 # Touchscreen gt911
@@ -95,20 +106,20 @@ touchscreen:
   display: my_display
   i2c_id: bus_a
   interrupt_pin: GPIO4
-  # reset_pin:
-    # waveshare_io: waveshare_io_hub
-    # number: 1
-    # mode: OUTPUT
-  on_touch:
-    - lambda: |-
-        ESP_LOGI("Touch", "Touch detected at x=%d, y=%d", touch.x, touch.y);
-  on_update:
-    - lambda: |-
-          for (auto touch: touches)  {
-              if (touch.state <= 2) {
-                ESP_LOGI("Touch points:", "id=%d x=%d, y=%d x.raw=%d, y.raw=%d", touch.id, touch.x, touch.y, touch.x_raw, touch.y_raw);
-              }
-          }
+  reset_pin:
+    waveshare_io: waveshare_io_hub
+    number: 1
+    mode: OUTPUT
+  # on_touch:
+    # - lambda: |-
+        # ESP_LOGI("Touch", "Touch detected at x=%d, y=%d", touch.x, touch.y);
+  # on_update:
+    # - lambda: |-
+          # for (auto touch: touches)  {
+              # if (touch.state <= 2) {
+                # ESP_LOGI("Touch points:", "id=%d x=%d, y=%d x.raw=%d, y.raw=%d", touch.id, touch.x, touch.y, touch.x_raw, touch.y_raw);
+              # }
+          # }
 
 #-------------------------------------------
 # Display
@@ -133,9 +144,9 @@ display:
       ignore_strapping_warning: true
     pclk_pin: 7
     pclk_inverted: true
-    # reset_pin:
-      # waveshare_io: waveshare_io_hub
-      # number: 3
+    reset_pin:
+      waveshare_io: waveshare_io_hub
+      number: 3
     hsync_back_porch: 152
     hsync_front_porch: 48
     hsync_pulse_width: 162
