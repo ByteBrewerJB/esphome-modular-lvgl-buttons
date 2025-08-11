@@ -12,11 +12,18 @@
 
 # Install ESPHome on a build machine
 
-I use a lot of svg vector graphics. The latest ESPHome does not install svg by default. Use pip to install cairosvg.
+I use a lot of svg vector graphics. The latest ESPHome does not install svg by default. Use pip to install cairosvg. If you have pre loaded Home Assistant hardware or images this should already be installed.
 
 ```
 pip install esphome cairosvg
 ```
+
+# Download this code in Home Assistant
+
+I use the File Manager Add-on to download and edit code from Git repos and the ESPHome Device builder to build the code and install the resulting images onto my ESP32 devices.
+
+https://github.com/home-assistant/addons/tree/master/configurator
+https://esphome.io/
 
 ### SDL Display on host
 
