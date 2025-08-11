@@ -21,8 +21,9 @@ pip install esphome cairosvg
 ## Download this code in Home Assistant
 
 I use the File Manager Add-on to download and edit code from Git repos and the ESPHome Device builder to build the code and install the resulting images onto my ESP32 devices.
-[File Manager Add-on](https://github.com/home-assistant/addons/tree/master/configurator)
 
+[File Manager Add-on](https://github.com/home-assistant/addons/tree/master/configurator)
+[ESPHome Device builder Add-on](https://esphome.io/)
 
 ### SDL Display on host
 
