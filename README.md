@@ -18,12 +18,14 @@ I use a lot of svg vector graphics. The latest ESPHome does not install svg by d
 pip install esphome cairosvg
 ```
 
-## Download this code in Home Assistant
+## Downloading the code in Home Assistant
 
 I use the File Manager Add-on to download and edit code from Git repos and the ESPHome Device builder to build the code and install the resulting images onto my ESP32 devices.
 
 [File Manager Add-on](https://github.com/home-assistant/addons/tree/master/configurator)
 [ESPHome Device builder Add-on](https://esphome.io/)
+
+# Supported screens
 
 ### SDL Display on host
 
