@@ -387,4 +387,98 @@ lvgl:
         then:
           lvgl.page.show: main_page
 
+#-------------------------------------------
+# Graphics and Fonts
+#-------------------------------------------
+image:
+  - file: modules/assets/clock.svg
+    id: clock_icon_60
+    resize: 60x60
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/house.svg
+    id: house_icon
+    resize: 30x30
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/house.svg
+    id: house_icon_60
+    resize: 60x60
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/grid_icon.svg
+    id: grid_icon
+    resize: 30x30
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/produced_icon.svg
+    id: produced_icon
+    resize: 30x30
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/produced_icon.svg
+    id: produced_icon_60
+    resize: 60x60
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/down_arrow.svg
+    id: down_arrow
+    resize: 30x30
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/up_arrow.svg
+    id: up_arrow
+    resize: 30x30
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/arrow_right_gray.svg
+    id: arrow_right_gray
+    resize: 15x10
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/arrow_right_blue.svg
+    id: arrow_right_blue
+    resize: 15x10
+    type: RGB565
+    transparency: alpha_channel
+
+font:
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep90
+    size: 90
+    bpp: 8
+    
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep80
+    size: 80
+    bpp: 8
+
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep60
+    size: 60
+    bpp: 8     
+
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep32
+    size: 32
+    bpp: 8
+
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep24
+    size: 24
+    bpp: 8
+
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep16
+    size: 16
+    bpp: 8
 

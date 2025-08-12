@@ -136,11 +136,12 @@ text_sensor:
 .shadow_box_styles:
     - &shadow_box_obj_base
       width: 310px
-      height: 175px
+      height: 174px
       bg_color: gray200
       scrollable: false
       radius: 20
-      pad_all: 10
+      pad_left: 10
+      pad_top: 20
       shadow_color: 0
       shadow_opa: 50%
       shadow_width: 10
@@ -167,7 +168,7 @@ lvgl:
         flex_align_main: space_around
         flex_align_cross: center
         flex_align_track: center
-        pad_row: 15
+        pad_row: 10
       bg_color: White
       <<: !include
         file: modules/sections/swipe_navigation.yaml      
@@ -203,9 +204,9 @@ lvgl:
                   grid_cell_row_pos: 1
                   grid_cell_column_pos: 1
                   id: date_label
-                  text_font: ep16
+                  text_font: ep32
                   text_color: black
-                  text: "September 19, 1970"
+                  text: "September 19"
 
 
 # Consumption box
@@ -232,9 +233,9 @@ lvgl:
                     widgets:
                       - label:
                           id: current_power_consumption_watts
-                          text_font: ep80
+                          text_font: ep70
                           text_color: black
-                          text: 8888
+                          text: "0000"
                       - label:
                           id: current_power_consumption_units
                           text_font: ep32
@@ -272,9 +273,9 @@ lvgl:
                     widgets:
                       - label:
                           id: current_power_production_watts
-                          text_font: ep80
+                          text_font: ep70
                           text_color: black
-                          text: 8888
+                          text: "0000"
                       - label:
                           id: current_power_production_units
                           text_font: ep32
@@ -363,12 +364,12 @@ lvgl:
                         id: weather_temperature_today
                         text_font: ep32
                         text_color: black
-                        text: "100°"
+                        text: "---°"
 
 # Enphase app copy
         - obj:
             width: 680px
-            height: 200px
+            height: 300px
             pad_left: 4
             layout:
               type: grid
@@ -379,16 +380,14 @@ lvgl:
             widgets:
         # Imported
               - image:
-                  grid_cell_row_pos: 0
-                  grid_cell_column_pos: 0
                   grid_cell_y_align: center
                   src: grid_icon
               - obj:
                   grid_cell_row_pos: 0
                   grid_cell_column_pos: 1
                   grid_cell_y_align: center
-                  width: 110
-                  height: 50
+                  width: 160
+                  height: 100
                   layout:
                     type: FLEX
                     flex_flow: ROW_WRAP
@@ -399,17 +398,17 @@ lvgl:
                   widgets:
                     - label:
                         id: daily_energy_imported_watts
-                        text_font: ep32
+                        text_font: ep40
                         text_color: black
-                        text: 88.8
+                        text: "00.0"
                     - label:
                         id: daily_energy_imported_watts_units
-                        text_font: ep16
+                        text_font: ep24
                         text_color: black
                         text: kWh
                         pad_bottom: 2
                     - label:
-                        text_font: ep16
+                        text_font: ep24
                         text_color: black
                         text: Imported
             # Consumed
@@ -425,10 +424,10 @@ lvgl:
                   grid_cell_column_pos: 3
                   grid_cell_row_span: 3
                   grid_cell_y_align: center
-                  width: 130
-                  height: 130
-                  radius: 65
-                  border_width: 5
+                  width: 200
+                  height: 200
+                  radius: 100
+                  border_width: 7
                   border_color: gray
                   layout:
                     type: FLEX
@@ -440,23 +439,23 @@ lvgl:
                     flex_align_track: center
                   widgets:
                     - image:
-                        pad_left: 30
-                        pad_right: 30
-                        pad_bottom: 4
+                        pad_left: 60
+                        pad_right: 60
+                        pad_bottom: 10
                         src: house_icon
                     - label:
                         id: daily_energy_consumption_watts
                         text_color: ep_orange
-                        text_font: ep32
-                        text: 88.8
+                        text_font: ep40
+                        text: "00.0"
                     - label:
                         id: daily_energy_consumption_watts_unit
                         text_color: ep_orange
-                        text_font: ep16
+                        text_font: ep24
                         text: kWh
                         pad_bottom: 2
                     - label:
-                        text_font: ep16
+                        text_font: ep24
                         text_color: black
                         text: Consumed
             # Exported
@@ -475,8 +474,8 @@ lvgl:
                     grid_cell_row_pos: 0
                     grid_cell_column_pos: 6
                     grid_cell_y_align: center
-                    width: 110
-                    height: 50
+                    width: 160
+                    height: 100
                     layout:
                         type: FLEX
                         flex_flow: ROW_WRAP
@@ -487,17 +486,17 @@ lvgl:
                     widgets:
                       - label:
                           id: daily_energy_exported_watts
-                          text_font: ep32
+                          text_font: ep40
                           text_color: black
-                          text: 88.8
+                          text: "00.0"
                       - label:
                           id: daily_energy_exported_watts_unit
-                          text_font: ep16
+                          text_font: ep24
                           text_color: black
                           text: kWh
                           pad_bottom: 2
                       - label:
-                          text_font: ep16
+                          text_font: ep24
                           text_color: black
                           text: Exported
          # Produced
@@ -510,8 +509,8 @@ lvgl:
                   grid_cell_row_pos: 1
                   grid_cell_column_pos: 1
                   grid_cell_y_align: center
-                  width: 110
-                  height: 50
+                  width: 160
+                  height: 100
                   layout:
                     type: FLEX
                     flex_flow: ROW_WRAP
@@ -522,17 +521,17 @@ lvgl:
                   widgets:
                     - label:
                         id: daily_energy_production_watts
-                        text_font: ep32
+                        text_font: ep40
                         text_color: ep_blue
-                        text: 88.8
+                        text: "00.0"
                     - label:
                         id: daily_energy_production_watts_label
-                        text_font: ep16
+                        text_font: ep24
                         text_color: ep_blue
                         text: kWh
                         pad_bottom: 2
                     - label:
-                        text_font: ep16
+                        text_font: ep24
                         text_color: black
                         text: Produced
               - image:
@@ -556,8 +555,8 @@ lvgl:
                     grid_cell_row_pos: 1
                     grid_cell_column_pos: 6
                     grid_cell_y_align: center
-                    width: 110
-                    height: 50
+                    width: 160
+                    height: 100
                     layout:
                         type: FLEX
                         flex_flow: ROW_WRAP
@@ -568,17 +567,17 @@ lvgl:
                     widgets:
                       - label:
                           id: daily_energy_net_watts
-                          text_font: ep32
+                          text_font: ep40
                           text_color: black
-                          text: 88.8
+                          text: "00.0"
                       - label:
                           id: daily_energy_net_watts_units
-                          text_font: ep16
+                          text_font: ep24
                           text_color: black
                           text: kWh
                           pad_bottom: 2
                       - label:
-                          text_font: ep16
+                          text_font: ep24
                           text_color: black
                           text: Net Imported
 
@@ -593,8 +592,8 @@ lvgl:
                   grid_cell_row_pos: 2
                   grid_cell_column_pos: 1
                   grid_cell_y_align: center
-                  width: 110
-                  height: 50
+                  width: 160
+                  height: 100
                   layout:
                     type: FLEX
                     flex_flow: ROW_WRAP
@@ -605,17 +604,17 @@ lvgl:
                   widgets:
                     - label:
                         id: daily_battery_energy_discharged_watts
-                        text_font: ep32
+                        text_font: ep40
                         text_color: ep_green
-                        text: 88.8
+                        text: "00.0"
                     - label:
                         id: daily_battery_energy_discharged_watts_units
-                        text_font: ep16
+                        text_font: ep24
                         text_color: ep_green
                         text: kWh
                         pad_bottom: 2
                     - label:
-                        text_font: ep16
+                        text_font: ep24
                         text_color: black
                         text: Discharged
               - image:
@@ -644,8 +643,8 @@ lvgl:
                     grid_cell_row_pos: 2
                     grid_cell_column_pos: 6
                     grid_cell_y_align: center
-                    width: 110
-                    height: 50
+                    width: 160
+                    height: 100
                     layout:
                         type: FLEX
                         flex_flow: ROW_WRAP
@@ -656,17 +655,17 @@ lvgl:
                     widgets:
                       - label:
                           id: daily_battery_energy_charged_watts
-                          text_font: ep32
+                          text_font: ep40
                           text_color: ep_green
-                          text: 88.8
+                          text: "00.0"
                       - label:
                           id: daily_battery_energy_charged_watts_units
-                          text_font: ep16
+                          text_font: ep24
                           text_color: ep_green
                           text: kWh
                           pad_bottom: 2
                       - label:
-                          text_font: ep16
+                          text_font: ep24
                           text_color: black
                           text: Charged
 
@@ -674,3 +673,129 @@ lvgl:
         - obj:
             width: 470px
             height: 150px
+            
+#-------------------------------------------
+# Graphics and Fonts
+#-------------------------------------------
+image:
+  - file: modules/assets/clock.svg
+    id: clock_icon_60
+    resize: 60x60
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/house.svg
+    id: house_icon
+    resize: 40x40
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/house.svg
+    id: house_icon_60
+    resize: 60x60
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/grid_icon.svg
+    id: grid_icon
+    resize: 40x40
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/produced_icon.svg
+    id: produced_icon
+    resize: 40x40
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/produced_icon.svg
+    id: produced_icon_60
+    resize: 60x60
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/down_arrow.svg
+    id: down_arrow
+    resize: 40x40
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/up_arrow.svg
+    id: up_arrow
+    resize: 40x40
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/arrow_right_gray.svg
+    id: arrow_right_gray
+    resize: 25x15
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/arrow_right_blue.svg
+    id: arrow_right_blue
+    resize: 25x15
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/battery.svg
+    id: battery
+    resize: 40x40
+    type: RGB565
+
+    transparency: alpha_channel
+  - file: modules/assets/battery_100.svg
+    id: battery_100
+    resize: 45x45
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/grid_ok.svg
+    id: grid_ok
+    resize: 45x45
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/grid_down.svg
+    id: grid_down
+    resize: 45x45
+    type: RGB565
+    transparency: alpha_channel
+
+  - file: modules/assets/arrow_right_green.svg
+    id: arrow_right_green
+    resize: 25x15
+    type: RGB565
+    transparency: alpha_channel
+
+
+font:
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep90
+    size: 90
+    bpp: 8
+    
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep70
+    size: 70
+    bpp: 8
+
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep40
+    size: 40
+    bpp: 8     
+
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep32
+    size: 32
+    bpp: 8
+
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep24
+    size: 24
+    bpp: 8
+
+  - file: "modules/assets/epVisuelt-Regular.ttf"
+    id: ep16
+    size: 16
+    bpp: 8                     
