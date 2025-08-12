@@ -126,14 +126,14 @@ sensor:
                   text_color: ep_blue
               - lvgl.image.update:
                   id: daily_energy_net_watts_icon
-                  src: up_arrow
+                  src: up_arrow_45
             else:
               - lvgl.widget.update:
                   id: daily_energy_net_watts
                   text_color: ep_orange
               - lvgl.image.update:
                   id: daily_energy_net_watts_icon
-                  src: down_arrow
+                  src: down_arrow_45
         - lvgl.label.update:
             id: daily_energy_net_watts
             text:
