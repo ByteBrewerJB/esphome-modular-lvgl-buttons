@@ -10,13 +10,22 @@
 * Elecrow CrowPanel `DIS05035H` (v2.2) 3.5" with resistive touch and USB-C  [Manufacturer's Link](https://www.elecrow.com/esp32-display-3-5-inch-hmi-display-spi-tft-lcd-touch-screen.html).
 * Waveshare `ESP32-S3-Touch-LCD-7` 7.0" with capactivive touch and USB-C [Manufacturer's Link](https://www.waveshare.com/esp32-s3-touch-lcd-7.htm).
 
-# Install ESPHome on a build machine
+## Install ESPHome on a build machine
 
-I use a lot of svg vector graphics. The latest ESPHome does not install svg by default. Use pip to install cairosvg.
+I use a lot of svg vector graphics. The latest ESPHome does not install svg by default. Use pip to install cairosvg. If you have pre loaded Home Assistant hardware or images this should already be installed.
 
 ```
 pip install esphome cairosvg
 ```
+
+## Downloading the code in Home Assistant
+
+I use the File Manager Add-on to download and edit code from Git repos and the ESPHome Device builder to build the code and install the resulting images onto my ESP32 devices.
+
+[File Manager Add-on](https://github.com/home-assistant/addons/tree/master/configurator)
+[ESPHome Device builder Add-on](https://esphome.io/)
+
+# More infomation on supported devices
 
 ### SDL Display on host
 
