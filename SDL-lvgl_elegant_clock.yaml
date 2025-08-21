@@ -31,15 +31,12 @@ display:
       height: 480
 
 packages:
-  common_files:
-    url: https://github.com/agillis/esphome-configs
-    ref: main # optional
-    files: [modules/common/color.yaml,
-            modules/common/fonts.yaml]
+  # All the colors
+  colors: !include modules/base/color.yaml
+  # Fonts you need
+  fonts: !include modules/base/fonts.yaml
 
 api:
-  encryption:
-    key: !secret encryption_key
 
 logger:
 
@@ -78,7 +75,6 @@ script:
           value: !lambda |-
             auto now = id(homeassistant_time).now();
             return std::fmod(now.hour, 12) * 60 + now.minute;
-
 
 text_sensor:
   - platform: version
@@ -260,7 +256,7 @@ lvgl:
 # Graphics and Fonts
 # -------------------------------------------
 image:
-  - file: https://esphome.io/_static/logo-text-on-light.svg
+  - file: modules/assets/logo-text-on-light.svg
     id: boot_logo
     type: RGB565
     resize: 470x95

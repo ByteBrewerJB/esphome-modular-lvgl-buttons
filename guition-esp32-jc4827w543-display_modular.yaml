@@ -69,8 +69,6 @@ packages:
   colors: !include modules/base/color.yaml
   # Fonts you need
   fonts: !include modules/base/fonts_lite.yaml
-  # Your Images
-  images: !include modules/base/images.yaml
   # Some basic sensors
   sensors: !include modules/sensors/sensors_base.yaml
   # Styles + Themes

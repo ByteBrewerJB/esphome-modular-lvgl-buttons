@@ -188,7 +188,7 @@ lvgl:
               - lvgl.page.show: main_page
 
 image:
-  - file: https://esphome.io/_static/logo-text-on-light.svg
+  - file: modules/assets/logo-text-on-light.svg
     id: boot_logo_100px
     resize: 500x100 # aspect ratio 5
     type: RGB565

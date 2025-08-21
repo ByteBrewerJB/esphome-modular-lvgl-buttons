@@ -90,7 +90,6 @@ packages:
   wifi: !include modules/common/wifi.yaml
   colors: !include modules/common/color.yaml
   fonts: !include modules/common/fonts.yaml
-  images: !include modules/common/images.yaml
 
   # Harware description file
   hardware: !include modules/hardware/lilygo-tdisplays3.yaml

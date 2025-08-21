@@ -53,16 +53,28 @@ host:
 
 packages:
   # Generic configuration for ESP32 screens
-  # wifi: !include modules/base/wifi.yaml
+# SDL has no Wi-Fi
+# wifi: !include modules/base/wifi.yaml
+  # Basic ESP 32 stuff
   base: !include modules/base/base.yaml
+  # If you have a touch screen include this
+  touchscreen: !include modules/base/touchscreen.yaml
+  # All the colors
   colors: !include modules/base/color.yaml
+  # Fonts you need
   fonts: !include modules/base/fonts.yaml
-  images: !include modules/base/images.yaml
-  time: !include modules/base/time_homeassistant.yaml
+  # Some basic sensors
   sensors: !include modules/sensors/sensors_base-SDL.yaml
+  # Styles + Themes
+  theme_style: !include modules/base/theme_style.yaml
+  # Get correct time from homeassistant
+  time: !include modules/base/time_homeassistant.yaml
 
   # Harware description file
   hardware: !include modules/hardware/SDL-lvgl.yaml
+  
+  # Basic boot screen with ESPHome logo and device diagnostic info
+  boot_screen: !include modules/screens/boot_screen_480x480.yaml  
 
   # Weather packages
   # Build icon set from .svg files
@@ -91,7 +103,7 @@ packages:
     - &forcast_obj_base
       height: SIZE_CONTENT
       width: SIZE_CONTENT
-      bg_color: gray6
+      bg_color: gray50
       radius: 3
       pad_top: 2
       pad_bottom : 2
@@ -131,12 +143,6 @@ script:
             return {strftime_buf};
 
 lvgl:
-  theme: !include { file: modules/base/theme.yaml }
-  page_wrap: true
-
- # Boot screen
-  top_layer: !include { file: modules/screens/boot_screen.yaml, vars: { height: $screen_height, width: $screen_width  } }
-
 # Main Page
   pages:
       - id: main_page

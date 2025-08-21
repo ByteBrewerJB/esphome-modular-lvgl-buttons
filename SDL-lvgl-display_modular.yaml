@@ -72,8 +72,6 @@ packages:
   colors: !include modules/base/color.yaml
   # Fonts you need
   fonts: !include modules/base/fonts.yaml
-  # Your Images
-  images: !include modules/base/images.yaml
   # Some basic sensors
   sensors: !include modules/sensors/sensors_base-SDL.yaml
   # Styles + Themes
@@ -83,6 +81,9 @@ packages:
 
   # Harware description file
   hardware: !include modules/hardware/SDL-lvgl.yaml
+  
+  # Basic boot screen with ESPHome logo and device diagnostic info
+  boot_screen: !include modules/screens/boot_screen_480x480.yaml  
 
   # This section will Update button and relay state from Home Assistant
   # Any button that has real time updates needs a section here
@@ -108,13 +109,6 @@ packages:
 
 # LVGL pages and buttons
 lvgl:
-
-# Boot screen
-  top_layer: !include
-    file: modules/screens/boot_screen.yaml
-    vars:
-      height: $screen_height
-      width: $screen_width
 
 # Main Page
   pages:
