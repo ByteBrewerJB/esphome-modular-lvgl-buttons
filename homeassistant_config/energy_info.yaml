@@ -12,7 +12,7 @@ sensor:
         friendly_name: "Lifetime Net Energy Consumption in kWh"
         unit_of_measurement: 'kWh'
         value_template: >-
-          {{ states('sensor.envoy_202438007214_lifetime_net_energy_consumption') | float * 1000.0 }}
+          {{ states('sensor.envoy_XXXXXXXXXXXX_lifetime_net_energy_consumption') | float * 1000.0 }}
   - platform: template
     sensors:
       envoy_lifetime_net_energy_production_kwh:
@@ -20,7 +20,7 @@ sensor:
         friendly_name: "Lifetime Net Energy Production in kWh"
         unit_of_measurement: 'kWh'
         value_template: >-
-          {{ states('sensor.envoy_202438007214_lifetime_net_energy_production') | float * 1000.0 }}
+          {{ states('sensor.envoy_XXXXXXXXXXXX_lifetime_net_energy_production') | float * 1000.0 }}
   - platform: template
     sensors:
       envoy_lifetime_energy_consumption_kwh:
@@ -28,7 +28,7 @@ sensor:
         friendly_name: "Lifetime Energy Consumption in kWh"
         unit_of_measurement: 'kWh'
         value_template: >-
-          {{ states('sensor.envoy_202438007214_lifetime_energy_consumption') | float * 1000.0 }}
+          {{ states('sensor.envoy_XXXXXXXXXXXX_lifetime_energy_consumption') | float * 1000.0 }}
   - platform: template
     sensors:
       envoy_lifetime_energy_production_kwh:
@@ -36,7 +36,7 @@ sensor:
         friendly_name: "Lifetime Energy Production in kWh"
         unit_of_measurement: 'kWh'
         value_template: >-
-          {{ states('sensor.envoy_202438007214_lifetime_energy_production') | float * 1000.0 }}
+          {{ states('sensor.envoy_XXXXXXXXXXXX_lifetime_energy_production') | float * 1000.0 }}
   - platform: template
     sensors:
       envoy_lifetime_battery_energy_charged_kwh:
@@ -44,7 +44,7 @@ sensor:
         friendly_name: "Lifetime battery energy charged in kWh"
         unit_of_measurement: 'kWh'
         value_template: >-
-          {{ states('sensor.envoy_202438007214_lifetime_battery_energy_charged') | float * 1000.0 }}
+          {{ states('sensor.envoy_XXXXXXXXXXXX_lifetime_battery_energy_charged') | float * 1000.0 }}
   - platform: template
     sensors:
       envoy_lifetime_battery_energy_discharged_kwh:
@@ -52,7 +52,7 @@ sensor:
         friendly_name: "Lifetime battery energy discharged in kWh"
         unit_of_measurement: 'kWh'
         value_template: >-
-          {{ states('sensor.envoy_202438007214_lifetime_battery_energy_discharged') | float * 1000.0 }}          
+          {{ states('sensor.envoy_XXXXXXXXXXXX_lifetime_battery_energy_discharged') | float * 1000.0 }}          
 
 
 utility_meter:
