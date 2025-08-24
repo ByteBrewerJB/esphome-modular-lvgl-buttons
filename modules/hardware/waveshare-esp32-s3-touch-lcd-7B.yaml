@@ -46,7 +46,6 @@ output:
 
 switch:
   - platform: gpio
-    name: "Backlight Power"
     internal: True
     id: exio2
     restore_mode: ALWAYS_ON
