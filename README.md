@@ -3,12 +3,12 @@
 ## Supported Devices
 * Guition `ESP32-4848s040` 4.0" with capacitive touch 120v/220v relays and built in power supply + USB-C [AliExpress Link](https://www.aliexpress.com/item/3256806436431838.html).
 * Guition `ESP32-JC8048W550` 5.0" with capacitive touch USB-C [AliExpress Link](https://www.aliexpress.com/item/3256806546911788.html).
-* Guition `ESP32-jc4827w543C` 4.3" with capactivive touch and USB-C  [AliExpress Link](https://www.aliexpress.com/item/3256806543342794.html).
-* Sunton `ESP32-8048S043` 4.3" with capactivive touch and USB-C [AliExpress Link](https://www.aliexpress.com/item/1005004788147691.html).
-* Sunton `ESP32-8048S050` 5.0" with capactivive touch and USB-C [AliExpress Link](https://www.aliexpress.com/item/1005004952694042.html).
-* Sunton `ESP32-8048s070` 7.0" with capactivive touch and USB-C [AliExpress Link](https://www.aliexpress.com/item/3256807882909237.html).
+* Guition `ESP32-jc4827w543C` 4.3" with capacitive touch and USB-C  [AliExpress Link](https://www.aliexpress.com/item/3256806543342794.html).
+* Sunton `ESP32-8048S043` 4.3" with capacitive touch and USB-C [AliExpress Link](https://www.aliexpress.com/item/1005004788147691.html).
+* Sunton `ESP32-8048S050` 5.0" with capacitive touch and USB-C [AliExpress Link](https://www.aliexpress.com/item/1005004952694042.html).
+* Sunton `ESP32-8048s070` 7.0" with capacitive touch and USB-C [AliExpress Link](https://www.aliexpress.com/item/3256807882909237.html).
 * Elecrow CrowPanel `DIS05035H` (v2.2) 3.5" with resistive touch and USB-C  [Manufacturer's Link](https://www.elecrow.com/esp32-display-3-5-inch-hmi-display-spi-tft-lcd-touch-screen.html).
-* Waveshare `ESP32-S3-Touch-LCD-7` 7.0" with capactivive touch and USB-C [Manufacturer's Link](https://www.waveshare.com/esp32-s3-touch-lcd-7.htm).
+* Waveshare `ESP32-S3-Touch-LCD-7` 7.0" with capacitive touch and USB-C [Manufacturer's Link](https://www.waveshare.com/esp32-s3-touch-lcd-7.htm).
 
 ## Install ESPHome on a build machine
 
@@ -25,7 +25,7 @@ I use the File Manager Add-on to download and edit code from Git repos and the E
 [File Manager Add-on](https://github.com/home-assistant/addons/tree/master/configurator)
 [ESPHome Device builder Add-on](https://esphome.io/)
 
-# More infomation on supported devices
+# More information on supported devices
 
 ### SDL Display on host
 
@@ -41,7 +41,7 @@ This is one of the best screens I have found so far. Bright IPS display, 16MB fl
 
 ### Sunton `ESP32-8048s070` 7.0" 480px * 800px Smart Screen
 
-This is the largest and higest resolution screen avalible for a low cost. It has a very good touch screen and good dimmining ability. Very good for info displays.
+This is the largest and highest resolution screen available for a low cost. It has a very good touch screen and good dimmining ability. Very good for info displays.
 
 ### Guition `ESP32-jc4827w543C` 4.3" 272px * 480px Smart Screen
 
