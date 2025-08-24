@@ -1,0 +1,78 @@
+# Peblar EV Charger control panel for Guition ESP32-S3-4848S040
+substitutions:
+  car_electric: "\U000F0B6C"
+
+  icon_font: light40
+  text_font: roboto24
+  text_color: white
+  bg_color: black
+  button_on_color: "ep_orange"
+  button_off_color: "very_dark_gray"
+  icon_on_color: "yellow"
+  icon_off_color: "gray"
+  label_on_color: "white"
+  label_off_color: "gray"
+  button_text_color: "white"
+  button_height_single: '109px'
+  button_height_double: '228px'
+  button_width: '150px'
+  touchscreen_idle_timeout: "30s"
+  touchscreen_daytime_brightness: "100%"
+  touchscreen_nighttime_brightness: "50%"
+  boot_screen_delay: 60s
+  screen_height: '480px'
+  screen_width: '480px'
+
+esphome:
+  name: "peblar-ev-panel"
+  friendly_name: "Peblar EV Panel"
+  comment: "Guition ESP32-S3-4848S040 panel for Peblar EV charger"
+
+api:
+
+logger:
+
+script:
+  - id: time_update
+    then:
+      - lambda: |-
+          // No operation
+
+packages:
+  wifi: !include modules/base/wifi.yaml
+  backlight: !include modules/base/backlignt.yaml
+  colors: !include modules/base/color.yaml
+  fonts: !include modules/base/fonts.yaml
+  sensors: !include modules/sensors/sensors_base.yaml
+  theme_style: !include modules/base/theme_style.yaml
+  hardware: !include modules/hardware/guition-esp32-s3-4848s040.yaml
+  boot_screen: !include modules/screens/boot_screen_480x480.yaml
+
+  charge_mode_state: !include
+    file: modules/sensors/switch_or_light_button_state.yaml
+    vars:
+      uid: charge_mode
+      entity_id: "switch.peblar_ev_charger_slim_laden"
+
+lvgl:
+  pages:
+    - id: main_page
+      layout:
+        type: flex
+        flex_flow: COLUMN_WRAP
+      width: 100%
+      styles: page_style
+      bg_color: black
+      bg_opa: cover
+      <<: !include
+        file: modules/sections/swipe_navigation.yaml
+      widgets:
+        - button: !include
+            file: modules/buttons/switch_button.yaml
+            vars:
+              uid: charge_mode
+              height: $button_height_single
+              text: Slim laden
+              icon: $car_electric
+              entity_id: "switch.peblar_ev_charger_slim_laden"
+
